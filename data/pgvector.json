@@ -1,0 +1,35 @@
+{
+  "product_id": "prod-nonav2augkm6e",
+  "version_prefix": "0.8",
+  "product_title": "PostgreSQL 16 + pgvector (Hardened) on Amazon Linux 2023",
+  "version_title": "16-pgvector-0.8.5-2026.07.12",
+  "release_notes": "[Important] Initial release. PostgreSQL 16 with the pgvector 0.8 extension on Amazon Linux 2023, hardened baseline; all OS packages current at build.",
+  "ami_id": "ami-086e5d4bd790d1f78",
+  "categories": [
+    "Databases"
+  ],
+  "search_keywords": [
+    "vector database",
+    "pgvector",
+    "embeddings similarity search"
+  ],
+  "short_description": "This product has charges associated with it for image hardening, maintenance, and support. PostgreSQL 16 with the pgvector extension (vector similarity search for AI embeddings) on Amazon Linux 2023, security-hardened for production: minimal package set, SSH key-only access, IMDSv2-only, no password auth, and continuously patched images.",
+  "long_description": "PostgreSQL 16 + pgvector (Hardened) on Amazon Linux 2023 is a production-ready, security-hardened image of the PostgreSQL relational database with the pgvector extension for vector similarity search - the storage layer for AI embeddings, retrieval-augmented generation (RAG), and semantic search - maintained and supported by Derek Coleman & Associates Incorporated.\n\nThis is repackaged open-source software. PostgreSQL is developed by the PostgreSQL Global Development Group and pgvector by its open-source community; both are distributed under the PostgreSQL License. This product bundles unmodified upstream PostgreSQL 16 with pgvector built from the upstream source tag on a hardened Amazon Linux 2023 base; the charges associated with this listing are for image hardening, continuous patching, vulnerability scanning, and business-day support - not for the underlying open-source software, which remains free.\n\nHardening baseline: minimal package footprint (the build toolchain is removed after compiling the extension), SSH key-only access (password authentication disabled), IMDSv2 enforced, and no default database passwords (local peer/socket auth; remote access on port 5432 stays closed until you configure pg_hba.conf and open it to trusted CIDRs). The extension load is verified at build time. Images are rebuilt, scanned for HIGH and CRITICAL vulnerabilities, and republished on a regular cadence so that new launches start current. The data directory initializes on first boot; enable the extension per database with: CREATE EXTENSION vector;",
+  "highlights": [
+    "AI-ready out of the box: pgvector 0.8 compiled against PostgreSQL 16 and verified at build - exact and approximate (HNSW, IVFFlat) vector search over embeddings.",
+    "Security-hardened at build time: minimal packages, key-only SSH, IMDSv2-only, no default database passwords, remote access closed until you configure it.",
+    "Continuously patched: rebuilt, vulnerability-scanned, and republished on a regular cadence."
+  ],
+  "usage_instructions": "Launch from AWS Marketplace (1-Click or EC2 console). Connect via SSH: ssh -i <key> ec2-user@<public-ip>. The data directory initializes on first boot; administer locally with: sudo -u postgres psql, and enable the extension per database: CREATE EXTENSION vector; Remote access (port 5432) and authentication are a deliberate customer configuration step - edit pg_hba.conf and postgresql.conf, then open 5432 to trusted CIDRs only. Root login is disabled; use sudo. There are no passwords anywhere in this product.",
+  "recommended_instance_type": "c7i.2xlarge",
+  "security_groups": [
+    {
+      "IpProtocol": "tcp",
+      "FromPort": 5432,
+      "ToPort": 5432,
+      "IpRanges": [
+        "0.0.0.0/0"
+      ]
+    }
+  ]
+}

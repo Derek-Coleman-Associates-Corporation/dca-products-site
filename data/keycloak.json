@@ -1,0 +1,43 @@
+{
+  "product_id": "prod-ewrszl6y475b4",
+  "version_prefix": "26.7",
+  "product_title": "Keycloak (Hardened) on Amazon Linux 2023",
+  "version_title": "26.7-2026.07.12",
+  "release_notes": "[Important] Initial release. Keycloak 26.7 on Amazon Linux 2023, hardened baseline; all OS packages current at build.",
+  "ami_id": "ami-0c78969ccd15bbf56",
+  "categories": [
+    "Security"
+  ],
+  "search_keywords": [
+    "identity and access management",
+    "single sign-on",
+    "OIDC SAML"
+  ],
+  "short_description": "This product has charges associated with it for image hardening, maintenance, and support. Keycloak identity and access management on Amazon Linux 2023 with Amazon Corretto 21, security-hardened for production: minimal package set, SSH key-only access, IMDSv2-only, no default admin password (per-instance bootstrap credential), and continuously patched images.",
+  "long_description": "Keycloak (Hardened) on Amazon Linux 2023 is a production-ready, security-hardened image of the Keycloak identity and access management server (OpenID Connect, OAuth 2.0, SAML 2.0), maintained and supported by Derek Coleman & Associates Incorporated.\n\nThis is repackaged open-source software. Keycloak is a Cloud Native Computing Foundation project distributed under the Apache License 2.0. Keycloak is a trademark of Red Hat, Inc.; this listing is not endorsed by or affiliated with Red Hat or the CNCF. This product bundles unmodified upstream Keycloak on a hardened Amazon Linux 2023 base; the charges associated with this listing are for image hardening, continuous patching, vulnerability scanning, and business-day support - not for the underlying open-source software, which remains free.\n\nHardening baseline: minimal package footprint, SSH key-only access (password authentication disabled), IMDSv2 enforced, and no default admin credentials - the temporary bootstrap admin password is generated per instance on first boot (set to the EC2 instance ID); Keycloak requires you to create a permanent admin account on first login. Images are rebuilt, scanned for HIGH and CRITICAL vulnerabilities, and republished on a regular cadence so that new launches start current. Ships with the embedded dev-file database for evaluation and small deployments; point it at PostgreSQL for production clusters (documented in the usage instructions).",
+  "highlights": [
+    "Security-hardened at build time: minimal packages, key-only SSH, IMDSv2-only, no default admin password - bootstrap credential is per-instance (the EC2 instance ID).",
+    "Continuously patched: rebuilt, vulnerability-scanned, and republished on a regular cadence.",
+    "Production-ready: Keycloak 26.7 on Amazon Corretto 21, systemd-managed, health endpoints enabled; swap the embedded database for PostgreSQL when you scale."
+  ],
+  "usage_instructions": "Launch from AWS Marketplace (1-Click or EC2 console). Browse to http://<public-ip>:8080 and sign in with username admin and the temporary password equal to the EC2 instance ID (e.g. i-0abc123...); Keycloak then requires you to create a permanent admin account. For production, terminate TLS on 8443 or a load balancer, set a hostname, and configure an external PostgreSQL database in /opt/keycloak/conf/keycloak.conf, then: sudo systemctl restart keycloak. SSH: ssh -i <key> ec2-user@<public-ip>; root login is disabled; use sudo.",
+  "recommended_instance_type": "c7i.2xlarge",
+  "security_groups": [
+    {
+      "IpProtocol": "tcp",
+      "FromPort": 8080,
+      "ToPort": 8080,
+      "IpRanges": [
+        "0.0.0.0/0"
+      ]
+    },
+    {
+      "IpProtocol": "tcp",
+      "FromPort": 8443,
+      "ToPort": 8443,
+      "IpRanges": [
+        "0.0.0.0/0"
+      ]
+    }
+  ]
+}

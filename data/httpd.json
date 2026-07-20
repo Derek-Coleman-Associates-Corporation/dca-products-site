@@ -1,0 +1,43 @@
+{
+  "product_id": "prod-o7dixmaynm5r2",
+  "version_prefix": "2.4",
+  "product_title": "Apache HTTP Server (Hardened) on Amazon Linux 2023",
+  "version_title": "2.4-2026.07.11",
+  "release_notes": "[Important] Initial release. Apache HTTP Server on Amazon Linux 2023, hardened baseline; all OS packages current at build.",
+  "ami_id": "ami-0e7300e42ea0c2bfe",
+  "categories": [
+    "Network Infrastructure"
+  ],
+  "search_keywords": [
+    "web server",
+    "HTTP server",
+    "TLS"
+  ],
+  "short_description": "This product has charges associated with it for image hardening, maintenance, and support. Apache HTTP Server (httpd) on Amazon Linux 2023, security-hardened for production: minimal package set, SSH key-only access, IMDSv2-only, firewall pre-configured for HTTP/HTTPS, and continuously patched images.",
+  "long_description": "Apache HTTP Server (Hardened) on Amazon Linux 2023 is a production-ready, security-hardened image of the Apache HTTP Server (httpd), maintained and supported by Derek Coleman & Associates Incorporated.\n\nThis is repackaged open-source software. The Apache HTTP Server is developed by the Apache Software Foundation and is distributed under the Apache License 2.0. Apache and Apache HTTP Server are trademarks of the Apache Software Foundation; this listing is not endorsed by or affiliated with the ASF. This product bundles unmodified upstream Apache HTTP Server on a hardened Amazon Linux 2023 base; the charges associated with this listing are for image hardening, continuous patching, vulnerability scanning, and business-day support - not for the underlying open-source software, which remains free.\n\nHardening baseline: minimal package footprint, SSH key-only access (password authentication disabled), IMDSv2 enforced, host firewall pre-configured to expose only the web ports, server tokens minimized, and no default credentials anywhere. Images are rebuilt, scanned for HIGH and CRITICAL vulnerabilities, and republished on a regular cadence so that new launches start current. Serve content from /var/www/html, configure under /etc/httpd, and manage the service with systemd: sudo systemctl restart httpd.",
+  "highlights": [
+    "Security-hardened at build time: minimal packages, key-only SSH, IMDSv2-only, firewall enabled with only web ports open.",
+    "Continuously patched: rebuilt, vulnerability-scanned, and republished on a regular cadence.",
+    "Production-ready: systemd-managed Apache HTTP Server; serve from /var/www/html, configure under /etc/httpd."
+  ],
+  "usage_instructions": "Launch from AWS Marketplace (1-Click or EC2 console). Connect via SSH: ssh -i <key> ec2-user@<public-ip>. Serve content from /var/www/html; configuration lives under /etc/httpd. After changes: sudo systemctl restart httpd. For HTTPS, install your certificate in /etc/httpd/conf.d/ssl.conf (mod_ssl is included). Root login is disabled; use sudo. There are no passwords anywhere in this product.",
+  "recommended_instance_type": "c7i.xlarge",
+  "security_groups": [
+    {
+      "IpProtocol": "tcp",
+      "FromPort": 80,
+      "ToPort": 80,
+      "IpRanges": [
+        "0.0.0.0/0"
+      ]
+    },
+    {
+      "IpProtocol": "tcp",
+      "FromPort": 443,
+      "ToPort": 443,
+      "IpRanges": [
+        "0.0.0.0/0"
+      ]
+    }
+  ]
+}

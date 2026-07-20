@@ -1,0 +1,43 @@
+{
+  "product_id": "prod-ey3ebgdonit7i",
+  "version_prefix": "3.7",
+  "product_title": "Traefik (Hardened) on Amazon Linux 2023",
+  "version_title": "3.7-2026.07.12",
+  "release_notes": "[Important] Initial release. Traefik 3.7 on Amazon Linux 2023, hardened baseline; all OS packages current at build.",
+  "ami_id": "ami-00831583f0eb83d1a",
+  "categories": [
+    "Network Infrastructure"
+  ],
+  "search_keywords": [
+    "reverse proxy",
+    "load balancer",
+    "ingress"
+  ],
+  "short_description": "This product has charges associated with it for image hardening, maintenance, and support. Traefik reverse proxy on Amazon Linux 2023, security-hardened for production: minimal package set, SSH key-only access, IMDSv2-only, dashboard and API disabled, runs as a non-root user, and continuously patched images.",
+  "long_description": "Traefik (Hardened) on Amazon Linux 2023 is a production-ready, security-hardened image of the Traefik reverse proxy and load balancer, maintained and supported by Derek Coleman & Associates Incorporated.\n\nThis is repackaged open-source software. Traefik is developed by Traefik Labs and the Traefik community and is distributed under the MIT License. Traefik is a trademark of Traefik Labs; this listing is not endorsed by or affiliated with Traefik Labs. This product bundles the unmodified upstream Traefik release binary on a hardened Amazon Linux 2023 base; the charges associated with this listing are for image hardening, continuous patching, vulnerability scanning, and business-day support - not for the underlying open-source software, which remains free.\n\nHardening baseline: minimal package footprint, SSH key-only access (password authentication disabled), IMDSv2 enforced, Traefik running as a dedicated non-root user with only the bind capability, the dashboard and API disabled by default, host firewall exposing only web ports, and no default credentials anywhere. Images are rebuilt, scanned for HIGH and CRITICAL vulnerabilities, and republished on a regular cadence so that new launches start current. Define routers and services as YAML files under /etc/traefik/dynamic (watched live) and manage the service with systemd.",
+  "highlights": [
+    "Security-hardened at build time: minimal packages, key-only SSH, IMDSv2-only, non-root service user, dashboard/API off by default.",
+    "Continuously patched: rebuilt, vulnerability-scanned, and republished on a regular cadence.",
+    "Production-ready: systemd-managed Traefik 3.7; drop dynamic config YAML into /etc/traefik/dynamic - changes apply live."
+  ],
+  "usage_instructions": "Launch from AWS Marketplace (1-Click or EC2 console). Connect via SSH: ssh -i <key> ec2-user@<public-ip>. Static config lives at /etc/traefik/traefik.yml (entrypoints :80/:443); add routers and services as YAML files under /etc/traefik/dynamic - the directory is watched, so changes apply without restart. The dashboard and API are disabled by design. Root login is disabled; use sudo. There are no passwords anywhere in this product.",
+  "recommended_instance_type": "c7i.xlarge",
+  "security_groups": [
+    {
+      "IpProtocol": "tcp",
+      "FromPort": 80,
+      "ToPort": 80,
+      "IpRanges": [
+        "0.0.0.0/0"
+      ]
+    },
+    {
+      "IpProtocol": "tcp",
+      "FromPort": 443,
+      "ToPort": 443,
+      "IpRanges": [
+        "0.0.0.0/0"
+      ]
+    }
+  ]
+}

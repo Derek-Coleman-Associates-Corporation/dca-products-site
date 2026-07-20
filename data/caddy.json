@@ -1,0 +1,43 @@
+{
+  "product_id": "prod-lyqboeoclaaiy",
+  "version_prefix": "2.11",
+  "product_title": "Caddy (Hardened) on Amazon Linux 2023",
+  "version_title": "2.11-2026.07.12",
+  "release_notes": "[Important] Initial release. Caddy 2.11 on Amazon Linux 2023, hardened baseline; all OS packages current at build.",
+  "ami_id": "ami-0cec6ba3bce416086",
+  "categories": [
+    "Network Infrastructure"
+  ],
+  "search_keywords": [
+    "web server",
+    "reverse proxy",
+    "automatic HTTPS"
+  ],
+  "short_description": "This product has charges associated with it for image hardening, maintenance, and support. Caddy web server on Amazon Linux 2023, security-hardened for production: minimal package set, SSH key-only access, IMDSv2-only, runs as a non-root user, firewall pre-configured for HTTP/HTTPS, and continuously patched images.",
+  "long_description": "Caddy (Hardened) on Amazon Linux 2023 is a production-ready, security-hardened image of the Caddy web server and reverse proxy, maintained and supported by Derek Coleman & Associates Incorporated.\n\nThis is repackaged open-source software. Caddy is developed by the Caddy project community and is distributed under the Apache License 2.0. This listing is not endorsed by or affiliated with the Caddy project. This product builds Caddy from unmodified upstream source with the current patched Go toolchain (so known standard-library vulnerabilities in prebuilt binaries are absent) on a hardened Amazon Linux 2023 base; the charges associated with this listing are for image hardening, continuous patching, vulnerability scanning, and business-day support - not for the underlying open-source software, which remains free.\n\nHardening baseline: minimal package footprint, SSH key-only access (password authentication disabled), IMDSv2 enforced, Caddy running as a dedicated non-root user with only the bind capability, host firewall exposing only web ports, and no default credentials anywhere. Automatic HTTPS activates once you configure a real domain in the Caddyfile. Images are rebuilt, scanned for HIGH and CRITICAL vulnerabilities, and republished on a regular cadence so that new launches start current. Configure sites in /etc/caddy/Caddyfile and manage the service with systemd: sudo systemctl restart caddy.",
+  "highlights": [
+    "Security-hardened at build time: minimal packages, key-only SSH, IMDSv2-only, non-root service user, firewall enabled with only web ports open.",
+    "Continuously patched: rebuilt, vulnerability-scanned, and republished on a regular cadence.",
+    "Production-ready: systemd-managed Caddy 2.11; automatic HTTPS once you point a domain at your Caddyfile."
+  ],
+  "usage_instructions": "Launch from AWS Marketplace (1-Click or EC2 console). Connect via SSH: ssh -i <key> ec2-user@<public-ip>. Edit /etc/caddy/Caddyfile to define your sites (replace the placeholder :80 block with your domain to enable automatic HTTPS), then: sudo systemctl restart caddy. Root login is disabled; use sudo. There are no passwords anywhere in this product.",
+  "recommended_instance_type": "c7i.xlarge",
+  "security_groups": [
+    {
+      "IpProtocol": "tcp",
+      "FromPort": 80,
+      "ToPort": 80,
+      "IpRanges": [
+        "0.0.0.0/0"
+      ]
+    },
+    {
+      "IpProtocol": "tcp",
+      "FromPort": 443,
+      "ToPort": 443,
+      "IpRanges": [
+        "0.0.0.0/0"
+      ]
+    }
+  ]
+}

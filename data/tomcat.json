@@ -1,0 +1,35 @@
+{
+  "product_id": "prod-eua7ofzpq4eok",
+  "version_prefix": "10.1",
+  "product_title": "Apache Tomcat (Hardened) on Amazon Linux 2023",
+  "version_title": "10.1-2026.07.12",
+  "release_notes": "[Important] Initial release. Apache Tomcat 10.1 on Amazon Linux 2023, hardened baseline; all OS packages current at build.",
+  "ami_id": "ami-07aa429e23dc7ecf7",
+  "categories": [
+    "Application Development"
+  ],
+  "search_keywords": [
+    "application server",
+    "servlet container",
+    "Java web server"
+  ],
+  "short_description": "This product has charges associated with it for image hardening, maintenance, and support. Apache Tomcat 10.1 on Amazon Linux 2023 with Amazon Corretto 21, security-hardened for production: minimal package set, SSH key-only access, IMDSv2-only, no manager apps or default users, and continuously patched images.",
+  "long_description": "Apache Tomcat (Hardened) on Amazon Linux 2023 is a production-ready, security-hardened image of the Apache Tomcat servlet container running on Amazon Corretto 21, maintained and supported by Derek Coleman & Associates Incorporated.\n\nThis is repackaged open-source software. Apache Tomcat is developed by the Apache Software Foundation and is distributed under the Apache License 2.0. Apache and Apache Tomcat are trademarks of the Apache Software Foundation; this listing is not endorsed by or affiliated with the ASF. This product bundles unmodified upstream Apache Tomcat on a hardened Amazon Linux 2023 base; the charges associated with this listing are for image hardening, continuous patching, vulnerability scanning, and business-day support - not for the underlying open-source software, which remains free.\n\nHardening baseline: minimal package footprint, SSH key-only access (password authentication disabled), IMDSv2 enforced, and no default credentials anywhere - the manager, host-manager, docs, and examples webapps are removed, no Tomcat users are enabled, and the server version banner is suppressed. Images are rebuilt, scanned for HIGH and CRITICAL vulnerabilities, and republished on a regular cadence so that new launches start current. Deploy applications under /opt/tomcat/webapps and manage the service with systemd: sudo systemctl restart tomcat.",
+  "highlights": [
+    "Security-hardened at build time: minimal packages, key-only SSH, IMDSv2-only, manager/example apps removed, no enabled Tomcat users, version banner suppressed.",
+    "Continuously patched: rebuilt, vulnerability-scanned, and republished on a regular cadence.",
+    "Production-ready: systemd-managed Tomcat 10.1 on Amazon Corretto 21; deploy WARs under /opt/tomcat/webapps."
+  ],
+  "usage_instructions": "Launch from AWS Marketplace (1-Click or EC2 console). Connect via SSH: ssh -i <key> ec2-user@<public-ip>. Tomcat serves on port 8080; deploy applications by placing WAR files under /opt/tomcat/webapps, then: sudo systemctl restart tomcat. The manager and host-manager apps are removed by design; administer via SSH. Root login is disabled; use sudo. There are no passwords anywhere in this product.",
+  "recommended_instance_type": "c7i.2xlarge",
+  "security_groups": [
+    {
+      "IpProtocol": "tcp",
+      "FromPort": 8080,
+      "ToPort": 8080,
+      "IpRanges": [
+        "0.0.0.0/0"
+      ]
+    }
+  ]
+}

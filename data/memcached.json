@@ -1,0 +1,35 @@
+{
+  "product_id": "prod-yosg7norf6bno",
+  "version_prefix": "1.6",
+  "product_title": "Memcached (Hardened) on Amazon Linux 2023",
+  "version_title": "1.6-2026.07.11",
+  "release_notes": "[Important] Initial release. Memcached on Amazon Linux 2023, hardened baseline; all OS packages current at build.",
+  "ami_id": "ami-002c20b760d8d1978",
+  "categories": [
+    "Databases"
+  ],
+  "search_keywords": [
+    "in-memory cache",
+    "distributed cache",
+    "memory object caching"
+  ],
+  "short_description": "This product has charges associated with it for image hardening, maintenance, and support. Memcached on Amazon Linux 2023, security-hardened for production: minimal package set, SSH key-only access, IMDSv2-only, bound to loopback with UDP disabled (no amplification vector), and continuously patched images.",
+  "long_description": "Memcached (Hardened) on Amazon Linux 2023 is a production-ready, security-hardened image of the Memcached distributed memory object caching system, maintained and supported by Derek Coleman & Associates Incorporated.\n\nThis is repackaged open-source software. Memcached is developed by the Memcached community and is distributed under the BSD 3-Clause license. This product bundles unmodified upstream Memcached on a hardened Amazon Linux 2023 base; the charges associated with this listing are for image hardening, continuous patching, vulnerability scanning, and business-day support - not for the underlying open-source software, which remains free.\n\nHardening baseline: minimal package footprint, SSH key-only access (password authentication disabled), IMDSv2 enforced, Memcached bound to 127.0.0.1 with UDP disabled so the instance cannot be used as an amplification vector. Widening the bind address in /etc/sysconfig/memcached and opening TCP 11211 to trusted CIDRs is a deliberate customer configuration step. Images are rebuilt, scanned for HIGH and CRITICAL vulnerabilities, and republished on a regular cadence so that new launches start current. Manage the service with systemd: sudo systemctl restart memcached.",
+  "highlights": [
+    "Security-hardened at build time: minimal packages, key-only SSH, IMDSv2-only, bound to loopback, UDP disabled to prevent amplification abuse.",
+    "Continuously patched: rebuilt, vulnerability-scanned, and republished on a regular cadence.",
+    "Production-ready: systemd-managed Memcached; expose only to trusted CIDRs after you widen the bind."
+  ],
+  "usage_instructions": "Launch from AWS Marketplace (1-Click or EC2 console). Connect via SSH: ssh -i <key> ec2-user@<public-ip>. Memcached binds to 127.0.0.1 with UDP off. To expose it, edit /etc/sysconfig/memcached (-l), then: sudo systemctl restart memcached, and open TCP 11211 to trusted CIDRs only. Root login is disabled; use sudo. There are no passwords anywhere in this product.",
+  "recommended_instance_type": "c7i.xlarge",
+  "security_groups": [
+    {
+      "IpProtocol": "tcp",
+      "FromPort": 11211,
+      "ToPort": 11211,
+      "IpRanges": [
+        "0.0.0.0/0"
+      ]
+    }
+  ]
+}

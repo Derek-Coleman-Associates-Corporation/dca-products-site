@@ -1,0 +1,35 @@
+{
+  "product_id": "prod-hlrxj653t7nlo",
+  "version_prefix": "6.10",
+  "product_title": "Squid Proxy (Hardened) on Amazon Linux 2023",
+  "version_title": "6.10-2026.07.11",
+  "release_notes": "[Important] Initial release. Squid on Amazon Linux 2023, hardened baseline; all OS packages current at build.",
+  "ami_id": "ami-0cf728f9173f3549d",
+  "categories": [
+    "Network Infrastructure"
+  ],
+  "search_keywords": [
+    "forward proxy",
+    "caching proxy",
+    "web gateway"
+  ],
+  "short_description": "This product has charges associated with it for image hardening, maintenance, and support. Squid caching proxy on Amazon Linux 2023, security-hardened for production: minimal package set, SSH key-only access, IMDSv2-only, and continuously patched images.",
+  "long_description": "Squid Proxy (Hardened) on Amazon Linux 2023 is a production-ready, security-hardened image of the Squid caching and forwarding web proxy, maintained and supported by Derek Coleman & Associates Incorporated.\n\nThis is repackaged open-source software. Squid is developed by the Squid Project and is distributed under the GNU General Public License v2 or later. This product bundles unmodified upstream Squid on a hardened Amazon Linux 2023 base; the charges associated with this listing are for image hardening, continuous patching, vulnerability scanning, and business-day support - not for the underlying open-source software, which remains free.\n\nHardening baseline: minimal package footprint, SSH key-only access (password authentication disabled), IMDSv2 enforced, and a deny-all default proxy policy (Squid ships denying all client access; defining your ACLs in /etc/squid/squid.conf and opening TCP 3128 to trusted CIDRs is a deliberate customer configuration step, so the instance cannot be abused as an open proxy). Images are rebuilt, scanned for HIGH and CRITICAL vulnerabilities, and republished on a regular cadence so that new launches start current. Manage the service with systemd: sudo systemctl restart squid.",
+  "highlights": [
+    "Security-hardened at build time: minimal packages, key-only SSH, IMDSv2-only, proxy port firewalled to trusted CIDRs.",
+    "Continuously patched: rebuilt, vulnerability-scanned, and republished on a regular cadence.",
+    "Production-ready: systemd-managed Squid; tune ACLs and cache in /etc/squid/squid.conf."
+  ],
+  "usage_instructions": "Launch from AWS Marketplace (1-Click or EC2 console). Connect via SSH: ssh -i <key> ec2-user@<public-ip>. Edit /etc/squid/squid.conf to set your ACLs (Squid denies all by default), then: sudo systemctl restart squid, and open TCP 3128 to trusted CIDRs only. Root login is disabled; use sudo. There are no passwords anywhere in this product.",
+  "recommended_instance_type": "c7i.xlarge",
+  "security_groups": [
+    {
+      "IpProtocol": "tcp",
+      "FromPort": 3128,
+      "ToPort": 3128,
+      "IpRanges": [
+        "0.0.0.0/0"
+      ]
+    }
+  ]
+}

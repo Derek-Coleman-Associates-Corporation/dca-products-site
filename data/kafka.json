@@ -1,0 +1,35 @@
+{
+  "product_id": "prod-c2mf4ne3blf7u",
+  "version_prefix": "4.3",
+  "product_title": "Apache Kafka (Hardened) on Amazon Linux 2023",
+  "version_title": "4.3-2026.07.12",
+  "release_notes": "[Important] Initial release. Apache Kafka 4.3 (KRaft) on Amazon Linux 2023, hardened baseline; all OS packages current at build.",
+  "ami_id": "ami-0b714e1b52ace8da4",
+  "categories": [
+    "Application Development"
+  ],
+  "search_keywords": [
+    "event streaming",
+    "message broker",
+    "pub-sub"
+  ],
+  "short_description": "This product has charges associated with it for image hardening, maintenance, and support. Apache Kafka 4.3 (KRaft, no ZooKeeper) on Amazon Linux 2023 with Amazon Corretto, security-hardened for production: minimal package set, SSH key-only access, IMDSv2-only, listeners bound to loopback until you configure them, and continuously patched images.",
+  "long_description": "Apache Kafka (Hardened) on Amazon Linux 2023 is a production-ready, security-hardened single-node image of the Apache Kafka event-streaming platform in KRaft mode (no ZooKeeper), maintained and supported by Derek Coleman & Associates Incorporated.\n\nThis is repackaged open-source software. Apache Kafka is developed by the Apache Software Foundation and is distributed under the Apache License 2.0. Apache and Apache Kafka are trademarks of the Apache Software Foundation; this listing is not endorsed by or affiliated with the ASF. This product bundles unmodified upstream Apache Kafka (with patched bundled libraries where upstream jars carry known vulnerabilities) on a hardened Amazon Linux 2023 base; the charges associated with this listing are for image hardening, continuous patching, vulnerability scanning, and business-day support - not for the underlying open-source software, which remains free.\n\nHardening baseline: minimal package footprint, SSH key-only access (password authentication disabled), IMDSv2 enforced, and no exposed default listeners - Kafka ships with no authentication, so the broker binds to 127.0.0.1 and the storage formats itself on first boot; exposing listeners with SASL/TLS to trusted CIDRs is a deliberate customer configuration step. Images are rebuilt, scanned for HIGH and CRITICAL vulnerabilities, and republished on a regular cadence so that new launches start current. The broker is validated at build time with an end-to-end smoke test.",
+  "highlights": [
+    "Security-hardened at build time: minimal packages, key-only SSH, IMDSv2-only, broker bound to loopback until you configure authenticated listeners.",
+    "Continuously patched: rebuilt, vulnerability-scanned, and republished on a regular cadence; vulnerable bundled jars remediated at build.",
+    "Production-ready: Kafka 4.3 in KRaft mode (no ZooKeeper); storage auto-formats on first boot; systemd-managed."
+  ],
+  "usage_instructions": "Launch from AWS Marketplace (1-Click or EC2 console). Connect via SSH: ssh -i <key> ec2-user@<public-ip>. Kafka runs in KRaft mode and binds to 127.0.0.1:9092; verify locally with: /opt/kafka/bin/kafka-topics.sh --bootstrap-server 127.0.0.1:9092 --list. To serve clients, configure listeners plus SASL/TLS in /opt/kafka/config/server.properties, restart with: sudo systemctl restart kafka, and open port 9092 to trusted CIDRs only. Root login is disabled; use sudo. There are no passwords anywhere in this product.",
+  "recommended_instance_type": "c7i.2xlarge",
+  "security_groups": [
+    {
+      "IpProtocol": "tcp",
+      "FromPort": 9092,
+      "ToPort": 9092,
+      "IpRanges": [
+        "0.0.0.0/0"
+      ]
+    }
+  ]
+}

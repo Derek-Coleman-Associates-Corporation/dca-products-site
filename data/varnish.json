@@ -1,0 +1,35 @@
+{
+  "product_id": "prod-ggqvitwfe7ndc",
+  "version_prefix": "7.7",
+  "product_title": "Varnish Cache (Hardened) on Amazon Linux 2023",
+  "version_title": "7.7-2026.07.12",
+  "release_notes": "[Important] Initial release. Varnish Cache 7.7 on Amazon Linux 2023, hardened baseline; all OS packages current at build.",
+  "ami_id": "ami-0f7e057ba1dee83df",
+  "categories": [
+    "Network Infrastructure"
+  ],
+  "search_keywords": [
+    "HTTP cache",
+    "web accelerator",
+    "caching reverse proxy"
+  ],
+  "short_description": "This product has charges associated with it for image hardening, maintenance, and support. Varnish Cache HTTP accelerator on Amazon Linux 2023, security-hardened for production: minimal package set, SSH key-only access, IMDSv2-only, per-instance admin secret, and continuously patched images.",
+  "long_description": "Varnish Cache (Hardened) on Amazon Linux 2023 is a production-ready, security-hardened image of the Varnish Cache HTTP accelerator, maintained and supported by Derek Coleman & Associates Incorporated.\n\nThis is repackaged open-source software. Varnish Cache is developed by the Varnish Cache project and is distributed under a BSD 2-Clause license. Varnish is a trademark of Varnish Software AB; this listing is not endorsed by or affiliated with Varnish Software. This product bundles unmodified upstream Varnish Cache on a hardened Amazon Linux 2023 base; the charges associated with this listing are for image hardening, continuous patching, vulnerability scanning, and business-day support - not for the underlying open-source software, which remains free.\n\nHardening baseline: minimal package footprint, SSH key-only access (password authentication disabled), IMDSv2 enforced, the varnishadm management secret generated per instance on first boot (never baked into the image), admin interface bound to localhost, host firewall exposing only the HTTP port, and no default credentials anywhere. Images are rebuilt, scanned for HIGH and CRITICAL vulnerabilities, and republished on a regular cadence so that new launches start current. Varnish listens on port 80 with the backend defined in /etc/varnish/default.vcl (placeholder points at 127.0.0.1:8080 until you configure your origin).",
+  "highlights": [
+    "Security-hardened at build time: minimal packages, key-only SSH, IMDSv2-only, per-instance admin secret, admin interface on localhost only.",
+    "Continuously patched: rebuilt, vulnerability-scanned, and republished on a regular cadence.",
+    "Production-ready: systemd-managed Varnish on port 80 with 256 MB malloc cache; point default.vcl at your origin and restart."
+  ],
+  "usage_instructions": "Launch from AWS Marketplace (1-Click or EC2 console). Connect via SSH: ssh -i <key> ec2-user@<public-ip>. Varnish listens on port 80; edit /etc/varnish/default.vcl to point the backend at your origin server, then: sudo systemctl restart varnish. The varnishadm secret is generated per instance at /etc/varnish/secret. Root login is disabled; use sudo. There are no passwords anywhere in this product.",
+  "recommended_instance_type": "c7i.xlarge",
+  "security_groups": [
+    {
+      "IpProtocol": "tcp",
+      "FromPort": 80,
+      "ToPort": 80,
+      "IpRanges": [
+        "0.0.0.0/0"
+      ]
+    }
+  ]
+}

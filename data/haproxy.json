@@ -1,0 +1,35 @@
+{
+  "product_id": "prod-xqxh4oburloka",
+  "product_title": "HAProxy (Hardened) on Amazon Linux 2023",
+  "version_title": "2.8-2026.07.11",
+  "version_prefix": "2.8",
+  "release_notes": "[Important] Initial release. HAProxy on Amazon Linux 2023, hardened baseline; all OS packages current at build.",
+  "ami_id": "ami-01801787e6fdce7e9",
+  "categories": [
+    "Network Infrastructure"
+  ],
+  "search_keywords": [
+    "load balancer",
+    "reverse proxy",
+    "high availability"
+  ],
+  "short_description": "This product has charges associated with it for image hardening, maintenance, and support. HAProxy on Amazon Linux 2023, security-hardened for production: minimal package set, SSH key-only access, IMDSv2-only, firewall pre-configured for HTTP/HTTPS, and continuously patched images.",
+  "long_description": "HAProxy (Hardened) on Amazon Linux 2023 is a production-ready, security-hardened image of the HAProxy load balancer and reverse proxy, maintained and supported by Derek Coleman & Associates Incorporated.\n\nThis is repackaged open-source software. HAProxy is developed by HAProxy Technologies and the HAProxy community and is distributed under the GNU General Public License v2. This product bundles unmodified upstream HAProxy on a hardened Amazon Linux 2023 base; the charges associated with this listing are for image hardening, continuous patching, vulnerability scanning, and business-day support - not for the underlying open-source software, which remains free.\n\nHardening baseline: minimal package footprint, SSH key-only access (password authentication disabled), IMDSv2 enforced, host firewall pre-configured to expose only the load-balancer ports, and no default credentials anywhere. Images are rebuilt, scanned for HIGH and CRITICAL vulnerabilities, and republished on a regular cadence so that new launches start current. Configure your frontends and backends in /etc/haproxy/haproxy.cfg and manage the service with systemd.",
+  "highlights": [
+    "Security-hardened at build time: minimal packages, key-only SSH, IMDSv2-only, firewall enabled with only web ports open.",
+    "Continuously patched: images are rebuilt, vulnerability-scanned, and republished on a regular cadence so new launches start current.",
+    "Production-ready: systemd-managed HAProxy; the shipped config is syntax-validated at build; drop in your backends under /etc/haproxy."
+  ],
+  "usage_instructions": "Launch from AWS Marketplace (1-Click or EC2 console). Connect via SSH: ssh -i <key> ec2-user@<public-ip>. Edit /etc/haproxy/haproxy.cfg to define your frontends and backends, then: sudo systemctl restart haproxy. Root login is disabled; use sudo. There are no passwords anywhere in this product.",
+  "recommended_instance_type": "c7i.xlarge",
+  "security_groups": [
+    {
+      "IpProtocol": "tcp",
+      "FromPort": 80,
+      "ToPort": 80,
+      "IpRanges": [
+        "0.0.0.0/0"
+      ]
+    }
+  ]
+}
