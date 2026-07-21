@@ -22,6 +22,25 @@ PRICING = [("c7i.xlarge", "4 vCPU / 8 GiB", "$0.46"),
            ("c7i.4xlarge", "16 vCPU / 32 GiB", "$1.84")]
 GA4 = os.environ.get("GA4_MEASUREMENT_ID", "").strip()
 
+# Products that had an equivalent image in Bitnami's (now-retired) free catalog.
+# slug -> (name Bitnami used for the app, our app display name).
+# Only slugs present here AND in data/ (with a product_id) get a
+# /bitnami-alternative/<slug>/ landing page.
+BITNAMI_APPS = {
+    "haproxy": ("HAProxy", "HAProxy"),
+    "httpd": ("Apache", "Apache HTTP Server"),
+    "kafka": ("Kafka", "Apache Kafka"),
+    "keycloak": ("Keycloak", "Keycloak"),
+    "mariadb": ("MariaDB", "MariaDB"),
+    "memcached": ("Memcached", "Memcached"),
+    "nginx": ("NGINX", "NGINX"),
+    "postgresql": ("PostgreSQL", "PostgreSQL"),
+    "tomcat": ("Tomcat", "Apache Tomcat"),
+    "valkey": ("Valkey", "Valkey"),
+}
+BITNAMI_TRADEMARK_NOTE = ("Bitnami is a trademark of Broadcom, Inc. Used for identification "
+                          "only; no affiliation or endorsement implied.")
+
 CSS = """
 :root{--bg:#ffffff;--fg:#1a1f24;--muted:#5c6670;--card:#f5f7f9;--accent:#0972d3;
 --border:#d9dee3}
@@ -154,12 +173,83 @@ image operation, the hardening baseline, and launch issues. See <a href="/suppor
                 product_jsonld(p, canonical))
 
 
+def bitnami_page(slug: str, p: dict) -> str:
+    bn, app = BITNAMI_APPS[slug]
+    canonical = f"{BASE_URL}/bitnami-alternative/{slug}/"
+    mp = marketplace_url(p)
+    title = f"Bitnami {bn} Alternative — Hardened {app} by DC Associates Group"
+    valkey_note = ""
+    if slug == "valkey":
+        valkey_note = ("<p>Valkey is the Linux Foundation open-source fork of Redis, so this "
+                       "image is also a common landing point for teams migrating from the "
+                       "Bitnami Redis image.</p>")
+    body = f"""
+<h1>{html.escape(title)}</h1>
+<p class="lede">A security-hardened, actively maintained {html.escape(app)} image for AWS,
+published by {COMPANY} — a maintained path forward for teams moving off the retired free
+Bitnami {html.escape(bn)} image.</p>
+<p><a class="btn" data-mp="{slug}-bitnami-alt" href="{mp}" rel="noopener">View on AWS Marketplace</a></p>
+<h2>Why Bitnami users are migrating</h2>
+<p>In August 2025, Broadcom moved Bitnami's free image catalog to its Bitnami Secure Images
+program, and the legacy free catalog was subsequently removed from Docker Hub. Existing
+deployments keep running, but images from the old free channel no longer receive updates
+there. Teams that relied on the free Bitnami {html.escape(bn)} image are therefore looking
+for actively maintained, security-focused alternatives.</p>{valkey_note}
+<h2>What our hardened {html.escape(app)} image provides</h2>
+<ul class="hl">
+<li>CIS-aligned hardening baseline: minimal package set, SSH key-only access with root login
+disabled, IMDSv2 enforced, firewall enabled by default.</li>
+<li>CVE-patched monthly: images are rebuilt, scanned for HIGH and CRITICAL CVEs, and
+republished on a monthly cadence, so new launches start from a currently patched base.</li>
+<li>Zero default credentials: no passwords anywhere in the image; keys are generated per
+instance where needed.</li>
+<li>Deployed in your own AWS account: launched from AWS Marketplace into your VPC on EC2
+instances you control. Hourly usage pricing; charges stop when you terminate.</li>
+</ul>
+<h2>Migration notes</h2>
+<ul class="hl">
+<li>Configuration paths may differ: Bitnami images install under <code>/opt/bitnami</code>,
+while this image uses the standard distribution layout on Amazon Linux 2023. See the
+getting-started section on the <a href="/{slug}/">{html.escape(app)} product page</a> for
+exact paths.</li>
+<li>Migrate data with the application's standard tooling (dump/restore, replication, or file
+copy, per the {html.escape(app)} documentation).</li>
+<li>Services are systemd-managed and start on boot; validate your configuration on a fresh
+instance before cutting over production traffic.</li>
+</ul>
+<h2>Links</h2>
+<ul class="hl">
+<li><a data-mp="{slug}-bitnami-alt" href="{mp}" rel="noopener">AWS Marketplace listing</a></li>
+<li><a href="/{slug}/">{html.escape(p["product_title"])}</a> — full product details, pricing,
+and getting started.</li>
+<li><a href="/support/">Support</a> — included in the hourly software price.</li>
+</ul>
+<p class="note">{BITNAMI_TRADEMARK_NOTE}</p>
+"""
+    desc = (f"Bitnami {bn} alternative: security-hardened {app} image for AWS from {COMPANY}. "
+            "CIS-aligned baseline, monthly CVE patching, zero default credentials, "
+            "deployed in your own AWS account.")
+    return page(title, desc, canonical, body)
+
+
 def index_page(products: dict) -> str:
     cards = ""
     for slug, p in sorted(products.items(), key=lambda kv: kv[1]["product_title"]):
         short = p["short_description"].split("support. ", 1)[-1]
         cards += (f'<a class="card" href="/{slug}/"><h3>{html.escape(p["product_title"])}</h3>'
                   f'<p>{html.escape(short[:150])}…</p></a>')
+    bn_links = "".join(
+        f'<li><a href="/bitnami-alternative/{slug}/">Bitnami {html.escape(bn)} alternative</a></li>'
+        for slug, (bn, _app) in sorted(BITNAMI_APPS.items(), key=lambda kv: kv[1][0].lower())
+        if slug in products)
+    bitnami_section = ""
+    if bn_links:
+        bitnami_section = f"""<h2 id="bitnami">Migrating from Bitnami?</h2>
+<p>In August 2025, Broadcom moved Bitnami's free image catalog to Bitnami Secure Images, and the
+legacy free catalog was subsequently removed from Docker Hub. If you ran Bitnami images, we publish
+hardened, actively maintained equivalents:</p>
+<ul class="hl">{bn_links}</ul>
+<p class="note">{BITNAMI_TRADEMARK_NOTE}</p>"""
     body = f"""
 <h1>Security-hardened open-source server images for AWS</h1>
 <p class="lede">Production-ready AMIs on Amazon Linux 2023: minimal package set, SSH key-only
@@ -174,6 +264,7 @@ regular cadence. Hourly usage pricing on AWS Marketplace — no subscriptions, n
 <li>No default credentials of any kind; keys are generated per instance where needed.</li>
 <li>Rebuilt, scanned for HIGH and CRITICAL CVEs, and republished on a regular cadence.</li>
 </ul>
+{bitnami_section}
 """
     return page("DCA Hardened Images — security-hardened open-source AMIs for AWS Marketplace",
                 "Production-ready, security-hardened open-source server images for AWS: "
@@ -230,18 +321,26 @@ def main() -> None:
         d = dist / slug
         d.mkdir(exist_ok=True)
         (d / "index.html").write_text(product_page(slug, p))
+    bn_slugs = sorted(s for s in BITNAMI_APPS if s in products)
+    for slug in bn_slugs:
+        d = dist / "bitnami-alternative" / slug
+        d.mkdir(parents=True, exist_ok=True)
+        (d / "index.html").write_text(bitnami_page(slug, products[slug]))
     d = dist / "support"
     d.mkdir(exist_ok=True)
     (d / "index.html").write_text(support_page())
 
-    urls = [f"{BASE_URL}/", f"{BASE_URL}/support/"] + [f"{BASE_URL}/{s}/" for s in sorted(products)]
+    urls = ([f"{BASE_URL}/", f"{BASE_URL}/support/"]
+            + [f"{BASE_URL}/{s}/" for s in sorted(products)]
+            + [f"{BASE_URL}/bitnami-alternative/{s}/" for s in bn_slugs])
     sitemap = ('<?xml version="1.0" encoding="UTF-8"?>'
                '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'
                + "".join(f"<url><loc>{u}</loc></url>" for u in urls) + "</urlset>")
     (dist / "sitemap.xml").write_text(sitemap)
     (dist / "robots.txt").write_text(f"User-agent: *\nAllow: /\nSitemap: {BASE_URL}/sitemap.xml\n")
     (dist / "CNAME").write_text("products.dcassociatesgroup.com\n")
-    print(f"generated {len(products)} product pages + index/support/sitemap into dist/")
+    print(f"generated {len(products)} product pages + {len(bn_slugs)} bitnami-alternative pages "
+          "+ index/support/sitemap into dist/")
 
 
 if __name__ == "__main__":

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Bitnami NGINX Alternative — Hardened NGINX by DC Associates Group</title>
+<meta name="description" content="Bitnami NGINX alternative: security-hardened NGINX image for AWS from Derek Coleman &amp; Associates Incorporated. CIS-aligned baseline, monthly CVE patching, zero default credentials, deployed in your own AWS account.">
+<link rel="canonical" href="https://products.dcassociatesgroup.com/bitnami-alternative/nginx/">
+<meta property="og:title" content="Bitnami NGINX Alternative — Hardened NGINX by DC Associates Group">
+<meta property="og:description" content="Bitnami NGINX alternative: security-hardened NGINX image for AWS from Derek Coleman &amp; Associates Incorporated. CIS-aligned baseline, monthly CVE patching, zero default credentials, deployed in your own AWS account.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://products.dcassociatesgroup.com/bitnami-alternative/nginx/">
+<style>
+:root{--bg:#ffffff;--fg:#1a1f24;--muted:#5c6670;--card:#f5f7f9;--accent:#0972d3;
+--border:#d9dee3}
+@media(prefers-color-scheme:dark){:root{--bg:#0f1418;--fg:#e8edf2;--muted:#94a1ad;
+--card:#1a2129;--accent:#54aaff;--border:#2c3640}}
+*{box-sizing:border-box}body{margin:0;font:16px/1.6 -apple-system,BlinkMacSystemFont,
+"Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--fg)}
+a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
+.wrap{max-width:960px;margin:0 auto;padding:0 20px}
+header.site{border-bottom:1px solid var(--border);padding:14px 0}
+header.site .wrap{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.brand{font-weight:700;color:var(--fg)}
+nav a{margin-left:18px;color:var(--muted)}
+h1{font-size:1.7rem;line-height:1.25;margin:1.4em 0 .4em}
+h2{font-size:1.15rem;margin:1.6em 0 .5em}
+p.lede{color:var(--muted);font-size:1.05rem}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:14px;margin:24px 0}
+.card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:16px}
+.card h3{margin:0 0 6px;font-size:1.02rem}.card p{margin:0;color:var(--muted);font-size:.9rem}
+.btn{display:inline-block;background:var(--accent);color:#fff;padding:10px 18px;border-radius:8px;
+font-weight:600;margin:6px 0}.btn:hover{text-decoration:none;opacity:.92}
+ul.hl{padding-left:1.2em}ul.hl li{margin:.45em 0}
+table{border-collapse:collapse;width:100%;margin:10px 0}
+td,th{border:1px solid var(--border);padding:8px 12px;text-align:left;font-size:.95rem}
+th{background:var(--card)}
+.note{color:var(--muted);font-size:.85rem}
+footer{border-top:1px solid var(--border);margin-top:48px;padding:22px 0;color:var(--muted);font-size:.85rem}
+pre{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:12px;overflow-x:auto;font-size:.85rem}
+</style>
+
+</head>
+<body>
+<header class="site"><div class="wrap">
+<a class="brand" href="/">DCA Hardened Images</a>
+<nav><a href="/">Products</a><a href="/support/">Support</a></nav>
+</div></header>
+<main class="wrap">
+
+<h1>Bitnami NGINX Alternative — Hardened NGINX by DC Associates Group</h1>
+<p class="lede">A security-hardened, actively maintained NGINX image for AWS,
+published by Derek Coleman & Associates Incorporated — a maintained path forward for teams moving off the retired free
+Bitnami NGINX image.</p>
+<p><a class="btn" data-mp="nginx-bitnami-alt" href="https://aws.amazon.com/marketplace/search/results?searchTerms=NGINX%20Web%20Server%20%28Hardened%29%20on%20Amazon%20Linux%202023" rel="noopener">View on AWS Marketplace</a></p>
+<h2>Why Bitnami users are migrating</h2>
+<p>In August 2025, Broadcom moved Bitnami's free image catalog to its Bitnami Secure Images
+program, and the legacy free catalog was subsequently removed from Docker Hub. Existing
+deployments keep running, but images from the old free channel no longer receive updates
+there. Teams that relied on the free Bitnami NGINX image are therefore looking
+for actively maintained, security-focused alternatives.</p>
+<h2>What our hardened NGINX image provides</h2>
+<ul class="hl">
+<li>CIS-aligned hardening baseline: minimal package set, SSH key-only access with root login
+disabled, IMDSv2 enforced, firewall enabled by default.</li>
+<li>CVE-patched monthly: images are rebuilt, scanned for HIGH and CRITICAL CVEs, and
+republished on a monthly cadence, so new launches start from a currently patched base.</li>
+<li>Zero default credentials: no passwords anywhere in the image; keys are generated per
+instance where needed.</li>
+<li>Deployed in your own AWS account: launched from AWS Marketplace into your VPC on EC2
+instances you control. Hourly usage pricing; charges stop when you terminate.</li>
+</ul>
+<h2>Migration notes</h2>
+<ul class="hl">
+<li>Configuration paths may differ: Bitnami images install under <code>/opt/bitnami</code>,
+while this image uses the standard distribution layout on Amazon Linux 2023. See the
+getting-started section on the <a href="/nginx/">NGINX product page</a> for
+exact paths.</li>
+<li>Migrate data with the application's standard tooling (dump/restore, replication, or file
+copy, per the NGINX documentation).</li>
+<li>Services are systemd-managed and start on boot; validate your configuration on a fresh
+instance before cutting over production traffic.</li>
+</ul>
+<h2>Links</h2>
+<ul class="hl">
+<li><a data-mp="nginx-bitnami-alt" href="https://aws.amazon.com/marketplace/search/results?searchTerms=NGINX%20Web%20Server%20%28Hardened%29%20on%20Amazon%20Linux%202023" rel="noopener">AWS Marketplace listing</a></li>
+<li><a href="/nginx/">NGINX Web Server (Hardened) on Amazon Linux 2023</a> — full product details, pricing,
+and getting started.</li>
+<li><a href="/support/">Support</a> — included in the hourly software price.</li>
+</ul>
+<p class="note">Bitnami is a trademark of Broadcom, Inc. Used for identification only; no affiliation or endorsement implied.</p>
+
+</main>
+<footer><div class="wrap">
+<p>Derek Coleman & Associates Incorporated &middot; <a href="mailto:support@dcassociatesgroup.com">support@dcassociatesgroup.com</a></p>
+<p>All product names, logos, and brands are property of their respective owners and are used for
+identification purposes only. Use does not imply endorsement. Each page notes the relevant
+open-source license; the underlying open-source software remains free.</p>
+</div></footer>
+</body>
+</html>

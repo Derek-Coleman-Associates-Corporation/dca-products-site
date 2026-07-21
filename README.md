@@ -6,7 +6,10 @@ fleet, served at https://products.dcassociatesgroup.com via GitHub Pages.
 - `data/*.json` — product copy, synced from the (private) publishing repo's
   `scripts/publish/products/`. Only products with a non-null `product_id`
   (i.e., actually listed) get pages.
-- `generate_site.py` — zero-dependency static generator → `dist/`.
+- `generate_site.py` — zero-dependency static generator → `dist/`. Also emits
+  `/bitnami-alternative/<slug>/` SEO landing pages for products that had an
+  equivalent image in Bitnami's retired free catalog (see `BITNAMI_APPS`);
+  Bitnami/Broadcom are referenced as third-party trademarks, nominative use only.
 - Deploys on every push to `main` via `.github/workflows/pages.yml`.
 - Optional analytics: set the repo Actions variable `GA4_MEASUREMENT_ID`;
   outbound marketplace clicks fire a `marketplace_click` event.
