@@ -15,7 +15,7 @@ import urllib.parse
 from pathlib import Path
 
 BASE_URL = "https://products.dcassociatesgroup.com"
-COMPANY = "Derek Coleman & Associates Incorporated"
+COMPANY = "Derek Coleman & Associates Inc"
 SUPPORT_EMAIL = "support@dcassociatesgroup.com"
 PRICING = [("c7i.xlarge", "4 vCPU / 8 GiB", "$0.46"),
            ("c7i.2xlarge", "8 vCPU / 16 GiB", "$0.92"),

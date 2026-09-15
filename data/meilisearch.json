@@ -1,0 +1,35 @@
+{
+  "product_id": null,
+  "version_prefix": "1.50",
+  "product_title": "Meilisearch (Hardened) on Amazon Linux 2023",
+  "version_title": "1.50-2026.07.29",
+  "release_notes": "[Important] Initial release. Meilisearch on Amazon Linux 2023, hardened baseline; all OS packages current at build.",
+  "ami_id": "ami-05b60e858e6f52d79",
+  "categories": [
+    "Databases"
+  ],
+  "search_keywords": [
+    "search engine",
+    "full-text search",
+    "typo tolerance"
+  ],
+  "short_description": "Meilisearch on Amazon Linux 2023, security-hardened for production: minimal package set, SSH key-only access, IMDSv2-only, production mode with a per-instance master key generated on first boot (never baked into the image), and continuously patched images. This product has charges associated with it for image hardening, maintenance, and support.",
+  "long_description": "Meilisearch (Hardened) on Amazon Linux 2023 is a production-ready, security-hardened image of the Meilisearch lightning-fast search engine, maintained and supported by Derek Coleman & Associates Inc.\n\nThis is repackaged open-source software. Meilisearch is developed by Meili SAS and the Meilisearch community and is distributed under the MIT license. Meilisearch is a trademark of Meili SAS; this listing is not endorsed by or affiliated with Meili SAS. This product bundles Meilisearch built from unmodified upstream source on a hardened Amazon Linux 2023 base; the charges associated with this listing are for image hardening, continuous patching, vulnerability scanning, and business-day support - not for the underlying open-source software, which remains free.\n\nHardening baseline: minimal package footprint, SSH key-only access (password authentication disabled), IMDSv2 enforced, Meilisearch running in production mode bound to 127.0.0.1:7700 with a unique master key generated per instance on first boot (stored root-only at /etc/meilisearch.env - no key is ever baked into the image). Opening port 7700 to trusted CIDRs is a deliberate customer step. Images are rebuilt, scanned for HIGH and CRITICAL vulnerabilities, and republished on a regular cadence so that new launches start current. Manage the service with systemd: sudo systemctl restart meilisearch.",
+  "highlights": [
+    "Production-ready: systemd-managed Meilisearch; analytics disabled; read the master key with: sudo cat /etc/meilisearch.env.",
+    "Security-hardened at build time: minimal packages, key-only SSH, IMDSv2-only, production mode with a per-instance master key generated on first boot.",
+    "Continuously patched: rebuilt, vulnerability-scanned, and republished on a regular cadence."
+  ],
+  "usage_instructions": "1. Launch from AWS Marketplace (1-Click or EC2 console).\n2. Connect via SSH with your EC2 key pair: ssh -i <key> ec2-user@<public-ip>. Root login is disabled; use sudo.\n3. Meilisearch runs in production mode on 127.0.0.1:7700. meilisearch-firstboot.service writes a per-instance master key to /etc/meilisearch.env on first boot; read it with: sudo grep MEILI_MASTER_KEY /etc/meilisearch.env, then create API keys via the /keys endpoint. Every request needs Authorization: Bearer <key>. Data: /var/lib/meilisearch/data (dumps and snapshots alongside).\n4. To serve clients, open TCP 7700 to trusted CIDRs only.\n5. Verify: sudo systemctl status meilisearch.\n6. Sensitive data: the only secret is the per-instance master key in /etc/meilisearch.env (generated on first boot; never shipped in the image). To rotate: stop meilisearch, write a new MEILI_MASTER_KEY, start, then re-issue API keys.\n7. Backup: snapshot the EBS volume (it contains all configuration and data).\n8. Resources: a single instance uses 1 EC2 instance and 1 gp3 EBS volume; no other AWS resources are created.\n9. Support: support@dcassociatesgroup.com.",
+  "recommended_instance_type": "c7i.xlarge",
+  "security_groups": [
+    {
+      "IpProtocol": "tcp",
+      "FromPort": 7700,
+      "ToPort": 7700,
+      "IpRanges": [
+        "0.0.0.0/0"
+      ]
+    }
+  ]
+}
