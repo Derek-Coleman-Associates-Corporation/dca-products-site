@@ -1,5 +1,5 @@
 {
-  "product_id": null,
+  "product_id": "prod-vpzc7c3je4chg",
   "version_prefix": "stable",
   "product_title": "ClickHouse (Hardened) on Amazon Linux 2023",
   "version_title": "stable-2026.07.29",

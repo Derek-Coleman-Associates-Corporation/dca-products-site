@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ClickHouse (Hardened) on Amazon Linux 2023 — DCA Hardened Images</title>
+<meta name="description" content="ClickHouse columnar OLAP database on Amazon Linux 2023, security-hardened for production: minimal package set, SSH key-only access, IMDSv2-only, bound to…">
+<link rel="canonical" href="https://products.dcassociatesgroup.com/clickhouse/">
+<meta property="og:title" content="ClickHouse (Hardened) on Amazon Linux 2023 — DCA Hardened Images">
+<meta property="og:description" content="ClickHouse columnar OLAP database on Amazon Linux 2023, security-hardened for production: minimal package set, SSH key-only access, IMDSv2-only, bound to…">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://products.dcassociatesgroup.com/clickhouse/">
+<style>
+:root{--bg:#ffffff;--fg:#1a1f24;--muted:#5c6670;--card:#f5f7f9;--accent:#0972d3;
+--border:#d9dee3}
+@media(prefers-color-scheme:dark){:root{--bg:#0f1418;--fg:#e8edf2;--muted:#94a1ad;
+--card:#1a2129;--accent:#54aaff;--border:#2c3640}}
+*{box-sizing:border-box}body{margin:0;font:16px/1.6 -apple-system,BlinkMacSystemFont,
+"Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--fg)}
+a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
+.wrap{max-width:960px;margin:0 auto;padding:0 20px}
+header.site{border-bottom:1px solid var(--border);padding:14px 0}
+header.site .wrap{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.brand{font-weight:700;color:var(--fg)}
+nav a{margin-left:18px;color:var(--muted)}
+h1{font-size:1.7rem;line-height:1.25;margin:1.4em 0 .4em}
+h2{font-size:1.15rem;margin:1.6em 0 .5em}
+p.lede{color:var(--muted);font-size:1.05rem}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:14px;margin:24px 0}
+.card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:16px}
+.card h3{margin:0 0 6px;font-size:1.02rem}.card p{margin:0;color:var(--muted);font-size:.9rem}
+.btn{display:inline-block;background:var(--accent);color:#fff;padding:10px 18px;border-radius:8px;
+font-weight:600;margin:6px 0}.btn:hover{text-decoration:none;opacity:.92}
+ul.hl{padding-left:1.2em}ul.hl li{margin:.45em 0}
+table{border-collapse:collapse;width:100%;margin:10px 0}
+td,th{border:1px solid var(--border);padding:8px 12px;text-align:left;font-size:.95rem}
+th{background:var(--card)}
+.note{color:var(--muted);font-size:.85rem}
+footer{border-top:1px solid var(--border);margin-top:48px;padding:22px 0;color:var(--muted);font-size:.85rem}
+pre{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:12px;overflow-x:auto;font-size:.85rem}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "ClickHouse (Hardened) on Amazon Linux 2023", "operatingSystem": "Amazon Linux 2023", "applicationCategory": "DeveloperApplication", "description": "ClickHouse columnar OLAP database on Amazon Linux 2023, security-hardened for production: minimal package set, SSH key-only access, IMDSv2-only, bound to loopback with no default remote access, and continuously patched images. This product has charges associated with it for image hardening, maintenance, and support.", "url": "https://products.dcassociatesgroup.com/clickhouse/", "provider": {"@type": "Organization", "name": "Derek Coleman & Associates Inc"}, "offers": {"@type": "AggregateOffer", "priceCurrency": "USD", "lowPrice": "0.46", "highPrice": "1.84", "description": "Hourly usage pricing on AWS Marketplace, billed per running instance hour."}}</script>
+</head>
+<body>
+<header class="site"><div class="wrap">
+<a class="brand" href="/">DCA Hardened Images</a>
+<nav><a href="/">Products</a><a href="/support/">Support</a></nav>
+</div></header>
+<main class="wrap">
+
+<h1>ClickHouse (Hardened) on Amazon Linux 2023</h1>
+<p class="lede">ClickHouse columnar OLAP database on Amazon Linux 2023, security-hardened for production: minimal package set, SSH key-only access, IMDSv2-only, bound to loopback with no default remote access, and continuously patched images. This product has charges associated with it for image hardening, maintenance, and support.</p>
+<p><a class="btn" data-mp="clickhouse" href="https://aws.amazon.com/marketplace/pp/prodview-chefbnhupksgg" rel="noopener">View on AWS Marketplace</a></p>
+<h2>Why this image</h2>
+<ul class="hl"><li>Production-ready: systemd-managed ClickHouse server + client from the official stable repository.</li><li>Security-hardened at build time: minimal packages, key-only SSH, IMDSv2-only, loopback-only listeners, no remote-accessible default user.</li><li>Continuously patched: rebuilt, vulnerability-scanned, and republished on a regular cadence.</li></ul>
+<h2>About</h2>
+<p>ClickHouse (Hardened) on Amazon Linux 2023 is a production-ready, security-hardened image of the ClickHouse column-oriented OLAP database, maintained and supported by Derek Coleman &amp; Associates Inc.</p><p>This is repackaged open-source software. ClickHouse is developed by ClickHouse, Inc. and the ClickHouse community and is distributed under the Apache License 2.0. ClickHouse is a trademark of ClickHouse, Inc.; this listing is not endorsed by or affiliated with ClickHouse, Inc. This product bundles unmodified upstream ClickHouse on a hardened Amazon Linux 2023 base; the charges associated with this listing are for image hardening, continuous patching, vulnerability scanning, and business-day support - not for the underlying open-source software, which remains free.</p><p>Hardening baseline: minimal package footprint, SSH key-only access (password authentication disabled), IMDSv2 enforced, and ClickHouse listening on loopback only (the default user is local-only with no password exposure; defining users in users.d and opening ports 8123/9000 to trusted CIDRs is a deliberate customer configuration step). Images are rebuilt, scanned for HIGH and CRITICAL vulnerabilities, and republished on a regular cadence so that new launches start current. Manage the service with systemd: sudo systemctl restart clickhouse-server.</p>
+<h2>Pricing (hourly usage, AWS Marketplace)</h2>
+<table><tr><th>Instance type</th><th>Size</th><th>Software price</th></tr><tr><td>c7i.xlarge</td><td>4 vCPU / 8 GiB</td><td>$0.46/hr</td></tr><tr><td>c7i.2xlarge</td><td>8 vCPU / 16 GiB</td><td>$0.92/hr</td></tr><tr><td>c7i.4xlarge</td><td>16 vCPU / 32 GiB</td><td>$1.84/hr</td></tr></table>
+<p class="note">Recommended: c7i.4xlarge. AWS infrastructure charges are separate and billed by AWS.
+Charges stop when instances are terminated. No subscription, no minimum.</p>
+<h2>Getting started</h2>
+<pre>1. Launch from AWS Marketplace (1-Click or EC2 console).
+2. Connect via SSH with your EC2 key pair: ssh -i &lt;key&gt; ec2-user@&lt;public-ip&gt;. Root login is disabled; use sudo.
+3. Query locally with: clickhouse-client.
+4. Remote access (HTTP 8123, native 9000) and user definitions under /etc/clickhouse-server/users.d are a deliberate customer configuration step; open those ports to trusted CIDRs only.
+5. Verify: clickhouse-client --query &#x27;SELECT 1&#x27;, or: sudo systemctl status clickhouse-server.
+6. Sensitive data: there are no passwords or secrets anywhere in this product.
+7. Backup: snapshot the EBS volume (it contains all configuration and data).
+8. Resources: a single instance uses 1 EC2 instance and 1 gp3 EBS volume; no other AWS resources are created.
+9. Support: support@dcassociatesgroup.com.</pre>
+<h2>Support</h2>
+<p>Email <a href="mailto:support@dcassociatesgroup.com">support@dcassociatesgroup.com</a> — business-day response. Covers
+image operation, the hardening baseline, and launch issues. See <a href="/support/">support</a>.</p>
+
+
+</main>
+<footer><div class="wrap">
+<p>Derek Coleman & Associates Inc &middot; <a href="mailto:support@dcassociatesgroup.com">support@dcassociatesgroup.com</a></p>
+<p>All product names, logos, and brands are property of their respective owners and are used for
+identification purposes only. Use does not imply endorsement. Each page notes the relevant
+open-source license; the underlying open-source software remains free.</p>
+</div></footer>
+</body>
+</html>

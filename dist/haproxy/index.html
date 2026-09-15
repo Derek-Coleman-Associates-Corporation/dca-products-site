@@ -4,10 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>HAProxy (Hardened) on Amazon Linux 2023 — DCA Hardened Images</title>
-<meta name="description" content="HAProxy on Amazon Linux 2023, security-hardened for production: minimal package set, SSH key-only access, IMDSv2-only, firewall pre-configured for HTTP/HTTPS, and continuously patched images. This product has charges associated with it for image hardening, maintenance, and support.">
+<meta name="description" content="HAProxy on Amazon Linux 2023, security-hardened for production: minimal package set, SSH key-only access, IMDSv2-only, firewall pre-configured for…">
 <link rel="canonical" href="https://products.dcassociatesgroup.com/haproxy/">
 <meta property="og:title" content="HAProxy (Hardened) on Amazon Linux 2023 — DCA Hardened Images">
-<meta property="og:description" content="HAProxy on Amazon Linux 2023, security-hardened for production: minimal package set, SSH key-only access, IMDSv2-only, firewall pre-configured for HTTP/HTTPS, and continuously patched images. This product has charges associated with it for image hardening, maintenance, and support.">
+<meta property="og:description" content="HAProxy on Amazon Linux 2023, security-hardened for production: minimal package set, SSH key-only access, IMDSv2-only, firewall pre-configured for…">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://products.dcassociatesgroup.com/haproxy/">
 <style>
@@ -50,7 +50,7 @@ pre{background:var(--card);border:1px solid var(--border);border-radius:8px;padd
 
 <h1>HAProxy (Hardened) on Amazon Linux 2023</h1>
 <p class="lede">HAProxy on Amazon Linux 2023, security-hardened for production: minimal package set, SSH key-only access, IMDSv2-only, firewall pre-configured for HTTP/HTTPS, and continuously patched images. This product has charges associated with it for image hardening, maintenance, and support.</p>
-<p><a class="btn" data-mp="haproxy" href="https://aws.amazon.com/marketplace/search/results?searchTerms=HAProxy%20%28Hardened%29%20on%20Amazon%20Linux%202023" rel="noopener">View on AWS Marketplace</a></p>
+<p><a class="btn" data-mp="haproxy" href="https://aws.amazon.com/marketplace/pp/prodview-eyaqk55wzzvio" rel="noopener">View on AWS Marketplace</a></p>
 <h2>Why this image</h2>
 <ul class="hl"><li>Production-ready: systemd-managed HAProxy; the shipped config is syntax-validated at build; drop in your backends under /etc/haproxy.</li><li>Security-hardened at build time: minimal packages, key-only SSH, IMDSv2-only, firewall enabled with only web ports open.</li><li>Continuously patched: images are rebuilt, vulnerability-scanned, and republished on a regular cadence so new launches start current.</li></ul>
 <h2>About</h2>
@@ -71,6 +71,20 @@ Charges stop when instances are terminated. No subscription, no minimum.</p>
 <h2>Support</h2>
 <p>Email <a href="mailto:support@dcassociatesgroup.com">support@dcassociatesgroup.com</a> — business-day response. Covers
 image operation, the hardening baseline, and launch issues. See <a href="/support/">support</a>.</p>
+<h2 id="bitnami">Migrating from Bitnami?</h2>
+<p>This image is a marketplace-native alternative for teams leaving the retired free
+Bitnami HAProxy image. It is not a drop-in copy of Bitnami's layout: Bitnami
+installs under <code>/opt/bitnami</code> and is controlled with <code>ctlscript.sh</code>,
+while this image uses the standard Amazon Linux 2023 paths and <code>systemctl</code>
+shown in the getting-started steps above.</p>
+<ul class="hl">
+<li><a href="/bitnami-alternative/haproxy/">Bitnami HAProxy alternative — migration
+notes for HAProxy</a></li>
+<li><a href="https://www.dcassociatesgroup.com/bitnami-replacement/" rel="noopener">Bitnami migration hub</a> — deprecation timeline,
+Lightsail blueprint dates, and the same image on Azure and Google Cloud</li>
+</ul>
+<p class="note">Bitnami is a trademark of Broadcom, Inc. Used for identification only; no affiliation or endorsement implied.</p>
+
 
 </main>
 <footer><div class="wrap">

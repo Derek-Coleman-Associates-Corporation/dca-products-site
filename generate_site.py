@@ -117,9 +117,60 @@ open-source license; the underlying open-source software remains free.</p>
 </html>"""
 
 
+# AWS Marketplace public listing IDs (prodview-*), keyed by catalog product_id.
+# Harvested 2026-09-15 from the public AWS Marketplace search UI; the Catalog API does not
+# expose prodview IDs. Deep links convert better than search-results links and are the
+# URLs to register in Search Console / G2 / AlternativeTo.
+PRODVIEW = {
+    "prod-o7dixmaynm5r2": "prodview-fj7jb7zlzcy2s",  # Apache HTTP Server
+    "prod-c2mf4ne3blf7u": "prodview-6a47wj5kuxyjg",  # Apache Kafka
+    "prod-eua7ofzpq4eok": "prodview-3yzz5vuftdaiq",  # Apache Tomcat
+    "prod-lyqboeoclaaiy": "prodview-m5veciil7vs62",  # Caddy
+    "prod-vpzc7c3je4chg": "prodview-chefbnhupksgg",  # ClickHouse
+    "prod-str5kdogzvt7k": "prodview-42aljtmwpxqow",  # Envoy Proxy
+    "prod-tthioo5ezpurw": "prodview-aw5qvkbjee5mm",  # etcd
+    "prod-xqxh4oburloka": "prodview-eyaqk55wzzvio",  # HAProxy
+    "prod-ewrszl6y475b4": "prodview-yo4upnevznpnk",  # Keycloak
+    "prod-4wcwsqvp3ctow": "prodview-y6s57zpvu7myc",  # MariaDB 10.5
+    "prod-tpajsngefwo7u": "prodview-m3muhgwxxc222",  # Meilisearch
+    "prod-yosg7norf6bno": "prodview-oa5sh5faqust4",  # Memcached
+    "prod-5kjxz3dra5rpe": "prodview-cri477nl6tb76",  # MySQL 8.4 Community
+    "prod-xzpeay2l7q2zc": "prodview-yt76h3kvcrh34",  # NGINX
+    "prod-sl3ygb5n5mojk": "prodview-vv6r7tlo5ccgw",  # OpenBao
+    "prod-3btmedsua2qay": "prodview-b4eeso3pohq7s",  # OpenSearch
+    "prod-oqut5katu4mfm": "prodview-tk6clfobctoko",  # PostgreSQL 16
+    "prod-nonav2augkm6e": "prodview-rxnm7o3neo7ie",  # PostgreSQL 16 + pgvector
+    "prod-xljhl5zw5ypxa": "prodview-o63oqjyb2suw6",  # Qdrant
+    "prod-hlrxj653t7nlo": "prodview-tsouyqtvlow2i",  # Squid Proxy
+    "prod-ey3ebgdonit7i": "prodview-rf3t2er5hyuic",  # Traefik
+    "prod-5i4kkadjqleyy": "prodview-bwni5s42qhykw",  # Valkey
+    "prod-ggqvitwfe7ndc": "prodview-mv63aoeq7gkqi",  # Varnish Cache
+}
+
+CHARGE_PREFIX = ("This product has charges associated with it for image hardening, "
+                 "maintenance, and support. ")
+CHARGE_SUFFIX = CHARGE_PREFIX.strip()
+BITNAMI_HUB = "https://www.dcassociatesgroup.com/bitnami-replacement/"
+
+
 def marketplace_url(p: dict) -> str:
+    pv = PRODVIEW.get(p.get("product_id") or "")
+    if pv:
+        return f"https://aws.amazon.com/marketplace/pp/{pv}"
     q = urllib.parse.quote(p["product_title"])
     return f"https://aws.amazon.com/marketplace/search/results?searchTerms={q}"
+
+
+def seo_description(text: str, limit: int = 155) -> str:
+    """Meta description: drop the AWS charge disclaimer (it stays in the on-page copy and
+    in the marketplace listing) and cut at a word boundary so search snippets are not
+    truncated mid-word. The disclaimer may lead (older copy) or trail (current copy)."""
+    text = text.removeprefix(CHARGE_PREFIX).strip()
+    text = text.removesuffix(CHARGE_SUFFIX).strip()
+    if len(text) <= limit:
+        return text
+    cut = text[:limit].rsplit(" ", 1)[0].rstrip(",;:")
+    return cut + "…"
 
 
 def product_jsonld(p: dict, canonical: str) -> str:
@@ -167,17 +218,41 @@ Charges stop when instances are terminated. No subscription, no minimum.</p>
 <h2>Support</h2>
 <p>Email <a href="mailto:{SUPPORT_EMAIL}">{SUPPORT_EMAIL}</a> — business-day response. Covers
 image operation, the hardening baseline, and launch issues. See <a href="/support/">support</a>.</p>
+{bitnami_migration_section(slug)}
 """
     return page(f'{p["product_title"]} — DCA Hardened Images',
-                p["short_description"][:300], canonical, body,
+                seo_description(p["short_description"]), canonical, body,
                 product_jsonld(p, canonical))
+
+
+def bitnami_migration_section(slug: str) -> str:
+    """'Migrating from Bitnami' block on the product pages that have a Bitnami-overlap
+    guide. Positioning rule: a marketplace-native *alternative* for teams leaving Bitnami —
+    never 'the replacement'."""
+    if slug not in BITNAMI_APPS:
+        return ""
+    bn, app = BITNAMI_APPS[slug]
+    return f"""<h2 id="bitnami">Migrating from Bitnami?</h2>
+<p>This image is a marketplace-native alternative for teams leaving the retired free
+Bitnami {html.escape(bn)} image. It is not a drop-in copy of Bitnami's layout: Bitnami
+installs under <code>/opt/bitnami</code> and is controlled with <code>ctlscript.sh</code>,
+while this image uses the standard Amazon Linux 2023 paths and <code>systemctl</code>
+shown in the getting-started steps above.</p>
+<ul class="hl">
+<li><a href="/bitnami-alternative/{slug}/">Bitnami {html.escape(bn)} alternative — migration
+notes for {html.escape(app)}</a></li>
+<li><a href="{BITNAMI_HUB}" rel="noopener">Bitnami migration hub</a> — deprecation timeline,
+Lightsail blueprint dates, and the same image on Azure and Google Cloud</li>
+</ul>
+<p class="note">{BITNAMI_TRADEMARK_NOTE}</p>
+"""
 
 
 def bitnami_page(slug: str, p: dict) -> str:
     bn, app = BITNAMI_APPS[slug]
     canonical = f"{BASE_URL}/bitnami-alternative/{slug}/"
     mp = marketplace_url(p)
-    title = f"Bitnami {bn} Alternative — Hardened {app} by DC Associates Group"
+    title = f"Bitnami {bn} Alternative — Hardened {app} on AWS Marketplace"
     valkey_note = ""
     if slug == "valkey":
         valkey_note = ("<p>Valkey is the Linux Foundation open-source fork of Redis, so this "

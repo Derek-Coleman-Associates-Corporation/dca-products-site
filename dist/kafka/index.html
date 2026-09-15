@@ -4,10 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Apache Kafka (Hardened) on Amazon Linux 2023 — DCA Hardened Images</title>
-<meta name="description" content="Apache Kafka 4.3 (KRaft, no ZooKeeper) on Amazon Linux 2023 with Amazon Corretto, security-hardened for production: minimal package set, SSH key-only access, IMDSv2-only, listeners bound to loopback until you configure them, and continuously patched images. This product has charges associated with i">
+<meta name="description" content="Apache Kafka 4.3 (KRaft, no ZooKeeper) on Amazon Linux 2023 with Amazon Corretto, security-hardened for production: minimal package set, SSH key-only…">
 <link rel="canonical" href="https://products.dcassociatesgroup.com/kafka/">
 <meta property="og:title" content="Apache Kafka (Hardened) on Amazon Linux 2023 — DCA Hardened Images">
-<meta property="og:description" content="Apache Kafka 4.3 (KRaft, no ZooKeeper) on Amazon Linux 2023 with Amazon Corretto, security-hardened for production: minimal package set, SSH key-only access, IMDSv2-only, listeners bound to loopback until you configure them, and continuously patched images. This product has charges associated with i">
+<meta property="og:description" content="Apache Kafka 4.3 (KRaft, no ZooKeeper) on Amazon Linux 2023 with Amazon Corretto, security-hardened for production: minimal package set, SSH key-only…">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://products.dcassociatesgroup.com/kafka/">
 <style>
@@ -50,7 +50,7 @@ pre{background:var(--card);border:1px solid var(--border);border-radius:8px;padd
 
 <h1>Apache Kafka (Hardened) on Amazon Linux 2023</h1>
 <p class="lede">Apache Kafka 4.3 (KRaft, no ZooKeeper) on Amazon Linux 2023 with Amazon Corretto, security-hardened for production: minimal package set, SSH key-only access, IMDSv2-only, listeners bound to loopback until you configure them, and continuously patched images. This product has charges associated with it for image hardening, maintenance, and support.</p>
-<p><a class="btn" data-mp="kafka" href="https://aws.amazon.com/marketplace/search/results?searchTerms=Apache%20Kafka%20%28Hardened%29%20on%20Amazon%20Linux%202023" rel="noopener">View on AWS Marketplace</a></p>
+<p><a class="btn" data-mp="kafka" href="https://aws.amazon.com/marketplace/pp/prodview-6a47wj5kuxyjg" rel="noopener">View on AWS Marketplace</a></p>
 <h2>Why this image</h2>
 <ul class="hl"><li>Production-ready: Kafka 4.3 in KRaft mode (no ZooKeeper); storage auto-formats on first boot; systemd-managed.</li><li>Security-hardened at build time: minimal packages, key-only SSH, IMDSv2-only, broker bound to loopback until you configure authenticated listeners.</li><li>Continuously patched: rebuilt, vulnerability-scanned, and republished on a regular cadence; vulnerable bundled jars remediated at build.</li></ul>
 <h2>About</h2>
@@ -72,6 +72,20 @@ Charges stop when instances are terminated. No subscription, no minimum.</p>
 <h2>Support</h2>
 <p>Email <a href="mailto:support@dcassociatesgroup.com">support@dcassociatesgroup.com</a> — business-day response. Covers
 image operation, the hardening baseline, and launch issues. See <a href="/support/">support</a>.</p>
+<h2 id="bitnami">Migrating from Bitnami?</h2>
+<p>This image is a marketplace-native alternative for teams leaving the retired free
+Bitnami Kafka image. It is not a drop-in copy of Bitnami's layout: Bitnami
+installs under <code>/opt/bitnami</code> and is controlled with <code>ctlscript.sh</code>,
+while this image uses the standard Amazon Linux 2023 paths and <code>systemctl</code>
+shown in the getting-started steps above.</p>
+<ul class="hl">
+<li><a href="/bitnami-alternative/kafka/">Bitnami Kafka alternative — migration
+notes for Apache Kafka</a></li>
+<li><a href="https://www.dcassociatesgroup.com/bitnami-replacement/" rel="noopener">Bitnami migration hub</a> — deprecation timeline,
+Lightsail blueprint dates, and the same image on Azure and Google Cloud</li>
+</ul>
+<p class="note">Bitnami is a trademark of Broadcom, Inc. Used for identification only; no affiliation or endorsement implied.</p>
+
 
 </main>
 <footer><div class="wrap">
