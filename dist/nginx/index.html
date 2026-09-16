@@ -72,6 +72,20 @@ Charges stop when instances are terminated. No subscription, no minimum.</p>
 <h2>Support</h2>
 <p>Email <a href="mailto:support@dcassociatesgroup.com">support@dcassociatesgroup.com</a> — business-day response. Covers
 image operation, the hardening baseline, and launch issues. See <a href="/support/">support</a>.</p>
+<h2 id="bitnami">Migrating from Bitnami?</h2>
+<p>This image is a marketplace-native alternative for teams leaving the retired free
+Bitnami NGINX image. It is not a drop-in copy of Bitnami's layout: Bitnami
+installs under <code>/opt/bitnami</code> and is controlled with <code>ctlscript.sh</code>,
+while this image uses the standard Amazon Linux 2023 paths and <code>systemctl</code>
+shown in the getting-started steps above.</p>
+<ul class="hl">
+<li><a href="/bitnami-alternative/nginx/">Bitnami NGINX alternative — migration
+notes for NGINX</a></li>
+<li><a href="https://www.dcassociatesgroup.com/bitnami-replacement/" rel="noopener">Bitnami migration hub</a> — deprecation timeline,
+Lightsail blueprint dates, and the same image on Azure and Google Cloud</li>
+</ul>
+<p class="note">Bitnami is a trademark of Broadcom, Inc. Used for identification only; no affiliation or endorsement implied.</p>
+
 
 </main>
 <footer><div class="wrap">
