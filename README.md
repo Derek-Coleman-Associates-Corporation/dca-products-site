@@ -1,6 +1,6 @@
 # DCA Hardened Images — product site
 
-Static landing pages for the Derek Coleman & Associates Incorporated AWS Marketplace
+Static landing pages for the Derek Coleman & Associates Inc AWS Marketplace
 fleet, served at https://products.dcassociatesgroup.com via GitHub Pages.
 
 - `data/*.json` — product copy, synced from the (private) publishing repo's

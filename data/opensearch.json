@@ -1,0 +1,35 @@
+{
+  "product_id": "prod-3btmedsua2qay",
+  "version_prefix": "3.7",
+  "product_title": "OpenSearch (Hardened) on Amazon Linux 2023",
+  "version_title": "3.7-2026.07.29",
+  "release_notes": "[Important] Initial release. OpenSearch on Amazon Linux 2023, hardened baseline; all OS packages current at build.",
+  "ami_id": "ami-0cd7bab5105daa44d",
+  "categories": [
+    "Databases"
+  ],
+  "search_keywords": [
+    "search engine",
+    "analytics",
+    "elasticsearch-compatible"
+  ],
+  "short_description": "OpenSearch on Amazon Linux 2023, security-hardened for production: minimal package set, SSH key-only access, IMDSv2-only, bound to loopback with no demo certificates or default passwords anywhere (install and configure the security plugin before any remote exposure), and continuously patched images. This product has charges associated with it for image hardening, maintenance, and support.",
+  "long_description": "OpenSearch (Hardened) on Amazon Linux 2023 is a production-ready, security-hardened image of the OpenSearch search and analytics suite, maintained and supported by Derek Coleman & Associates Inc.\n\nThis is repackaged open-source software. OpenSearch is a Linux Foundation project distributed under the Apache License 2.0. This product bundles unmodified upstream OpenSearch on a hardened Amazon Linux 2023 base; the charges associated with this listing are for image hardening, continuous patching, vulnerability scanning, and business-day support - not for the underlying open-source software, which remains free.\n\nHardening baseline: minimal package footprint, SSH key-only access (password authentication disabled), IMDSv2 enforced, and OpenSearch bound to 127.0.0.1 in single-node mode. The security plugin is not bundled (it ships with demo certificates and shaded dependencies that fail our vulnerability gate) - installing it (bin/opensearch-plugin install opensearch-security), configuring certificates, users, and TLS, and opening port 9200 to trusted CIDRs is a deliberate customer step before any remote exposure. Images are rebuilt, scanned for HIGH and CRITICAL vulnerabilities, and republished on a regular cadence so that new launches start current. Manage the service with systemd: sudo systemctl restart opensearch.",
+  "highlights": [
+    "Production-ready: systemd-managed OpenSearch with bundled JDK; vm.max_map_count preconfigured; single-node mode out of the box.",
+    "Security-hardened at build time: minimal packages, key-only SSH, IMDSv2-only, loopback-only, no demo certificates or default passwords anywhere.",
+    "Continuously patched: rebuilt, vulnerability-scanned, and republished on a regular cadence."
+  ],
+  "usage_instructions": "1. Launch from AWS Marketplace (1-Click or EC2 console).\n2. Connect via SSH with your EC2 key pair: ssh -i <key> ec2-user@<public-ip>. Root login is disabled; use sudo.\n3. OpenSearch listens on 127.0.0.1:9200 in single-node mode; verify with: curl http://127.0.0.1:9200.\n4. The security plugin is not bundled - install it with: sudo -u opensearch /usr/share/opensearch/bin/opensearch-plugin install opensearch-security, configure certificates and users, then open 9200 to trusted CIDRs only.\n5. Health monitoring: curl http://127.0.0.1:9200/_cluster/health, or: sudo systemctl status opensearch. Logs: /var/log/opensearch/. The image presets vm.max_map_count=262144 in /etc/sysctl.d/99-opensearch.conf - restore it if the node refuses to start after a sysctl change.\n6. Sensitive data: there are no passwords or secrets anywhere in this product.\n7. Backup: snapshot the EBS volume (it contains all configuration and data).\n8. Resources: a single instance uses 1 EC2 instance and 1 gp3 EBS volume; no other AWS resources are created.\n9. Support: support@dcassociatesgroup.com.",
+  "recommended_instance_type": "c7i.2xlarge",
+  "security_groups": [
+    {
+      "IpProtocol": "tcp",
+      "FromPort": 9200,
+      "ToPort": 9200,
+      "IpRanges": [
+        "0.0.0.0/0"
+      ]
+    }
+  ]
+}

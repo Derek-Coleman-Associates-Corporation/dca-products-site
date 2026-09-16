@@ -1,0 +1,35 @@
+{
+  "product_id": "prod-5kjxz3dra5rpe",
+  "version_prefix": "8.4",
+  "product_title": "MySQL 8.4 Community (Hardened) on Amazon Linux 2023",
+  "version_title": "8.4-2026.07.29",
+  "release_notes": "[Important] Initial release. MySQL Community Server on Amazon Linux 2023, hardened baseline; all OS packages current at build.",
+  "ami_id": "ami-084eccf08e39317ca",
+  "categories": [
+    "Databases"
+  ],
+  "search_keywords": [
+    "relational database",
+    "SQL",
+    "MySQL"
+  ],
+  "short_description": "MySQL 8.4 Community Server (LTS) on Amazon Linux 2023, security-hardened for production: minimal package set, SSH key-only access, IMDSv2-only, socket-auth root (no passwords), remote access closed until you configure it, and continuously patched images. This product has charges associated with it for image hardening, maintenance, and support.",
+  "long_description": "MySQL 8.4 Community (Hardened) on Amazon Linux 2023 is a production-ready, security-hardened image of the MySQL Community Server relational database (8.4 LTS series), maintained and supported by Derek Coleman & Associates Inc.\n\nThis is repackaged open-source software. MySQL Community Server is developed by Oracle Corporation and the MySQL community and is distributed under the GNU General Public License v2. MySQL is a trademark of Oracle Corporation; this listing is not endorsed by or affiliated with Oracle. This product bundles unmodified upstream MySQL Community Server on a hardened Amazon Linux 2023 base; the charges associated with this listing are for image hardening, continuous patching, vulnerability scanning, and business-day support - not for the underlying open-source software, which remains free.\n\nHardening baseline: minimal package footprint, SSH key-only access (password authentication disabled), IMDSv2 enforced, and no default database passwords (the data directory initializes on first boot and root access uses auth_socket - sudo mysql; remote access on port 3306 stays closed until you create users and open the port to trusted CIDRs). MySQL X protocol is disabled by default. Images are rebuilt, scanned for HIGH and CRITICAL vulnerabilities, and republished on a regular cadence so that new launches start current. Manage the service with systemd and administer locally with: sudo mysql.",
+  "highlights": [
+    "Production-ready: systemd-managed MySQL 8.4 LTS; data directory initializes on first boot; local root via auth_socket.",
+    "Security-hardened at build time: minimal packages, key-only SSH, IMDSv2-only, no default database passwords, port 3306 closed until you open it.",
+    "Continuously patched: rebuilt, vulnerability-scanned, and republished on a regular cadence."
+  ],
+  "usage_instructions": "1. Launch from AWS Marketplace (1-Click or EC2 console).\n2. Connect via SSH with your EC2 key pair: ssh -i <key> ec2-user@<public-ip>. Root login is disabled; use sudo.\n3. The data directory initializes on first boot and a one-shot unit (mysql-firstboot.service) switches root to auth_socket; it is finished when /var/lib/mysql-firstboot.done exists (check progress with: sudo journalctl -u mysql-firstboot). Administer locally with: sudo mysql (local root via auth_socket; no root password exists).\n4. Remote access (port 3306) and user creation are a deliberate customer configuration step: set bind-address in /etc/my.cnf AND /etc/my.cnf.d/zz-hardening.cnf (both pin 127.0.0.1), restart mysqld, create a non-root user with a strong password, then open 3306 to trusted CIDRs only. MySQL X protocol (33060) is disabled.\n5. Verify: sudo mysql -e 'SELECT VERSION();'.\n6. Sensitive data: no passwords or secrets ship in the image. During first-boot initialization MySQL writes a temporary root password to /var/log/mysqld.log; it is invalidated in the same boot when root is switched to auth_socket.\n7. Backup: snapshot the EBS volume (it contains all configuration and data).\n8. Resources: a single instance uses 1 EC2 instance and 1 gp3 EBS volume; no other AWS resources are created.\n9. Support: support@dcassociatesgroup.com.",
+  "recommended_instance_type": "c7i.2xlarge",
+  "security_groups": [
+    {
+      "IpProtocol": "tcp",
+      "FromPort": 3306,
+      "ToPort": 3306,
+      "IpRanges": [
+        "0.0.0.0/0"
+      ]
+    }
+  ]
+}

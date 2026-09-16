@@ -1,0 +1,43 @@
+{
+  "product_id": "prod-vpzc7c3je4chg",
+  "version_prefix": "stable",
+  "product_title": "ClickHouse (Hardened) on Amazon Linux 2023",
+  "version_title": "stable-2026.07.29",
+  "release_notes": "[Important] Initial release. ClickHouse on Amazon Linux 2023, hardened baseline; all OS packages current at build.",
+  "ami_id": "ami-0e08881eff2122bee",
+  "categories": [
+    "Databases"
+  ],
+  "search_keywords": [
+    "OLAP",
+    "columnar database",
+    "analytics"
+  ],
+  "short_description": "ClickHouse columnar OLAP database on Amazon Linux 2023, security-hardened for production: minimal package set, SSH key-only access, IMDSv2-only, bound to loopback with no default remote access, and continuously patched images. This product has charges associated with it for image hardening, maintenance, and support.",
+  "long_description": "ClickHouse (Hardened) on Amazon Linux 2023 is a production-ready, security-hardened image of the ClickHouse column-oriented OLAP database, maintained and supported by Derek Coleman & Associates Inc.\n\nThis is repackaged open-source software. ClickHouse is developed by ClickHouse, Inc. and the ClickHouse community and is distributed under the Apache License 2.0. ClickHouse is a trademark of ClickHouse, Inc.; this listing is not endorsed by or affiliated with ClickHouse, Inc. This product bundles unmodified upstream ClickHouse on a hardened Amazon Linux 2023 base; the charges associated with this listing are for image hardening, continuous patching, vulnerability scanning, and business-day support - not for the underlying open-source software, which remains free.\n\nHardening baseline: minimal package footprint, SSH key-only access (password authentication disabled), IMDSv2 enforced, and ClickHouse listening on loopback only (the default user is local-only with no password exposure; defining users in users.d and opening ports 8123/9000 to trusted CIDRs is a deliberate customer configuration step). Images are rebuilt, scanned for HIGH and CRITICAL vulnerabilities, and republished on a regular cadence so that new launches start current. Manage the service with systemd: sudo systemctl restart clickhouse-server.",
+  "highlights": [
+    "Production-ready: systemd-managed ClickHouse server + client from the official stable repository.",
+    "Security-hardened at build time: minimal packages, key-only SSH, IMDSv2-only, loopback-only listeners, no remote-accessible default user.",
+    "Continuously patched: rebuilt, vulnerability-scanned, and republished on a regular cadence."
+  ],
+  "usage_instructions": "1. Launch from AWS Marketplace (1-Click or EC2 console).\n2. Connect via SSH with your EC2 key pair: ssh -i <key> ec2-user@<public-ip>. Root login is disabled; use sudo.\n3. Query locally with: clickhouse-client.\n4. Remote access (HTTP 8123, native 9000) and user definitions under /etc/clickhouse-server/users.d are a deliberate customer configuration step; open those ports to trusted CIDRs only.\n5. Verify: clickhouse-client --query 'SELECT 1', or: sudo systemctl status clickhouse-server.\n6. Sensitive data: there are no passwords or secrets anywhere in this product.\n7. Backup: snapshot the EBS volume (it contains all configuration and data).\n8. Resources: a single instance uses 1 EC2 instance and 1 gp3 EBS volume; no other AWS resources are created.\n9. Support: support@dcassociatesgroup.com.",
+  "recommended_instance_type": "c7i.4xlarge",
+  "security_groups": [
+    {
+      "IpProtocol": "tcp",
+      "FromPort": 8123,
+      "ToPort": 8123,
+      "IpRanges": [
+        "0.0.0.0/0"
+      ]
+    },
+    {
+      "IpProtocol": "tcp",
+      "FromPort": 9000,
+      "ToPort": 9000,
+      "IpRanges": [
+        "0.0.0.0/0"
+      ]
+    }
+  ]
+}

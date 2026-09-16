@@ -1,0 +1,35 @@
+{
+  "product_id": "prod-tthioo5ezpurw",
+  "version_prefix": "3.7",
+  "product_title": "etcd (Hardened) on Amazon Linux 2023",
+  "version_title": "3.7-2026.09.02",
+  "release_notes": "[Important] Initial release. etcd 3.7.1 on Amazon Linux 2023, hardened baseline; all OS packages current at build. etcd, etcdctl and etcdutl are built from the unmodified upstream v3.7.1 tag with the current Go toolchain so the image does not inherit the CVEs carried by the published upstream binaries.",
+  "ami_id": "ami-0414b44d97b963754",
+  "categories": [
+    "Databases"
+  ],
+  "search_keywords": [
+    "key-value store",
+    "distributed configuration",
+    "service discovery"
+  ],
+  "short_description": "etcd distributed key-value store on Amazon Linux 2023, security-hardened for production: minimal package set, SSH key-only access, IMDSv2-only, client API bound to loopback until you configure TLS, and continuously patched images. This product has charges associated with it for image hardening, maintenance, and support.",
+  "long_description": "etcd (Hardened) on Amazon Linux 2023 is a production-ready, security-hardened image of the etcd distributed, consistent key-value store, maintained and supported by Derek Coleman & Associates Inc.\n\nThis is repackaged open-source software. etcd is a Cloud Native Computing Foundation graduated project distributed under the Apache License 2.0. This product bundles unmodified upstream etcd on a hardened Amazon Linux 2023 base; the charges associated with this listing are for image hardening, continuous patching, vulnerability scanning, and business-day support - not for the underlying open-source software, which remains free.\n\nHardening baseline: minimal package footprint, SSH key-only access (password authentication disabled), IMDSv2 enforced, and the etcd client API bound to 127.0.0.1:2379 (configuring TLS certificates, peer URLs, and cluster membership, then opening 2379/2380 to trusted CIDRs, is a deliberate customer step before any remote or cluster use). Images are rebuilt, scanned for HIGH and CRITICAL vulnerabilities, and republished on a regular cadence so that new launches start current. Manage the service with systemd: sudo systemctl restart etcd.",
+  "highlights": [
+    "Production-ready: systemd-managed etcd with etcdctl and etcdutl included; single-member out of the box, cluster-ready.",
+    "Security-hardened at build time: minimal packages, key-only SSH, IMDSv2-only, client API on loopback until you configure TLS.",
+    "Continuously patched: rebuilt, vulnerability-scanned, and republished on a regular cadence."
+  ],
+  "usage_instructions": "1. Launch from AWS Marketplace (1-Click or EC2 console).\n2. Connect via SSH with your EC2 key pair: ssh -i <key> ec2-user@<public-ip>. Root login is disabled; use sudo.\n3. etcd serves http://127.0.0.1:2379; verify with: etcdctl endpoint health.\n4. Clustering and remote access require configuring TLS and advertise URLs in the systemd unit, then opening 2379/2380 to trusted CIDRs only.\n5. Health monitoring: etcdctl endpoint health, or: sudo systemctl status etcd.\n6. Sensitive data: there are no passwords or secrets anywhere in this product.\n7. Backup: etcdctl snapshot save /path/backup.db (copy it off-box; restore with etcdctl snapshot restore), or snapshot the EBS volume (it contains all configuration and data).\n8. Resources: a single instance uses 1 EC2 instance and 1 gp3 EBS volume; no other AWS resources are created.\n9. Support: support@dcassociatesgroup.com.",
+  "recommended_instance_type": "c7i.xlarge",
+  "security_groups": [
+    {
+      "IpProtocol": "tcp",
+      "FromPort": 2379,
+      "ToPort": 2379,
+      "IpRanges": [
+        "0.0.0.0/0"
+      ]
+    }
+  ]
+}

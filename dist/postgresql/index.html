@@ -4,10 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>PostgreSQL 16 (Hardened) on Amazon Linux 2023 — DCA Hardened Images</title>
-<meta name="description" content="This product has charges associated with it for image hardening, maintenance, and support. PostgreSQL 16 on Amazon Linux 2023, security-hardened for production: minimal package set, SSH key-only access, IMDSv2-only, no password auth, data directory initialized on first boot, and continuously patched">
+<meta name="description" content="PostgreSQL 16 on Amazon Linux 2023, security-hardened for production: minimal package set, SSH key-only access, IMDSv2-only, no password auth, data…">
 <link rel="canonical" href="https://products.dcassociatesgroup.com/postgresql/">
 <meta property="og:title" content="PostgreSQL 16 (Hardened) on Amazon Linux 2023 — DCA Hardened Images">
-<meta property="og:description" content="This product has charges associated with it for image hardening, maintenance, and support. PostgreSQL 16 on Amazon Linux 2023, security-hardened for production: minimal package set, SSH key-only access, IMDSv2-only, no password auth, data directory initialized on first boot, and continuously patched">
+<meta property="og:description" content="PostgreSQL 16 on Amazon Linux 2023, security-hardened for production: minimal package set, SSH key-only access, IMDSv2-only, no password auth, data…">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://products.dcassociatesgroup.com/postgresql/">
 <style>
@@ -39,7 +39,7 @@ th{background:var(--card)}
 footer{border-top:1px solid var(--border);margin-top:48px;padding:22px 0;color:var(--muted);font-size:.85rem}
 pre{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:12px;overflow-x:auto;font-size:.85rem}
 </style>
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "PostgreSQL 16 (Hardened) on Amazon Linux 2023", "operatingSystem": "Amazon Linux 2023", "applicationCategory": "DeveloperApplication", "description": "This product has charges associated with it for image hardening, maintenance, and support. PostgreSQL 16 on Amazon Linux 2023, security-hardened for production: minimal package set, SSH key-only access, IMDSv2-only, no password auth, data directory initialized on first boot, and continuously patched images.", "url": "https://products.dcassociatesgroup.com/postgresql/", "provider": {"@type": "Organization", "name": "Derek Coleman & Associates Incorporated"}, "offers": {"@type": "AggregateOffer", "priceCurrency": "USD", "lowPrice": "0.46", "highPrice": "1.84", "description": "Hourly usage pricing on AWS Marketplace, billed per running instance hour."}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "PostgreSQL 16 (Hardened) on Amazon Linux 2023", "operatingSystem": "Amazon Linux 2023", "applicationCategory": "DeveloperApplication", "description": "PostgreSQL 16 on Amazon Linux 2023, security-hardened for production: minimal package set, SSH key-only access, IMDSv2-only, no password auth, data directory initialized on first boot, and continuously patched images. This product has charges associated with it for image hardening, maintenance, and support.", "url": "https://products.dcassociatesgroup.com/postgresql/", "provider": {"@type": "Organization", "name": "Derek Coleman & Associates Inc"}, "offers": {"@type": "AggregateOffer", "priceCurrency": "USD", "lowPrice": "0.46", "highPrice": "1.84", "description": "Hourly usage pricing on AWS Marketplace, billed per running instance hour."}}</script>
 </head>
 <body>
 <header class="site"><div class="wrap">
@@ -49,25 +49,33 @@ pre{background:var(--card);border:1px solid var(--border);border-radius:8px;padd
 <main class="wrap">
 
 <h1>PostgreSQL 16 (Hardened) on Amazon Linux 2023</h1>
-<p class="lede">This product has charges associated with it for image hardening, maintenance, and support. PostgreSQL 16 on Amazon Linux 2023, security-hardened for production: minimal package set, SSH key-only access, IMDSv2-only, no password auth, data directory initialized on first boot, and continuously patched images.</p>
-<p><a class="btn" data-mp="postgresql" href="https://aws.amazon.com/marketplace/search/results?searchTerms=PostgreSQL%2016%20%28Hardened%29%20on%20Amazon%20Linux%202023" rel="noopener">View on AWS Marketplace</a></p>
+<p class="lede">PostgreSQL 16 on Amazon Linux 2023, security-hardened for production: minimal package set, SSH key-only access, IMDSv2-only, no password auth, data directory initialized on first boot, and continuously patched images. This product has charges associated with it for image hardening, maintenance, and support.</p>
+<p><a class="btn" data-mp="postgresql" href="https://aws.amazon.com/marketplace/pp/prodview-tk6clfobctoko" rel="noopener">View on AWS Marketplace</a></p>
 <h2>Why this image</h2>
-<ul class="hl"><li>Security-hardened at build time: minimal packages, key-only SSH, IMDSv2-only, no default database passwords, remote access closed until you configure it.</li><li>Continuously patched: images are rebuilt, vulnerability-scanned, and republished on a regular cadence so new launches start current.</li><li>Production-ready: systemd-managed PostgreSQL 16; the data directory auto-initializes on first boot under /var/lib/pgsql.</li></ul>
+<ul class="hl"><li>Production-ready: systemd-managed PostgreSQL 16; the data directory auto-initializes on first boot under /var/lib/pgsql.</li><li>Security-hardened at build time: minimal packages, key-only SSH, IMDSv2-only, no default database passwords, remote access closed until you configure it.</li><li>Continuously patched: images are rebuilt, vulnerability-scanned, and republished on a regular cadence so new launches start current.</li></ul>
 <h2>About</h2>
-<p>PostgreSQL 16 (Hardened) on Amazon Linux 2023 is a production-ready, security-hardened image of the PostgreSQL relational database, maintained and supported by Derek Coleman &amp; Associates Incorporated.</p><p>This is repackaged open-source software. PostgreSQL is developed by the PostgreSQL Global Development Group and distributed under the PostgreSQL License (a permissive OSI-approved license). This product bundles unmodified upstream PostgreSQL 16 on a hardened Amazon Linux 2023 base; the charges associated with this listing are for image hardening, continuous patching, vulnerability scanning, and business-day support - not for the underlying open-source software, which remains free.</p><p>Hardening baseline: minimal package footprint, SSH key-only access (password authentication disabled), IMDSv2 enforced, and no default database passwords (local peer/socket auth; remote access on port 5432 stays closed until you configure pg_hba.conf and open it to trusted CIDRs). Images are rebuilt, scanned for HIGH and CRITICAL vulnerabilities, and republished on a regular cadence. The data directory initializes on first boot under /var/lib/pgsql; manage the service with systemd and administer locally with: sudo -u postgres psql.</p>
+<p>PostgreSQL 16 (Hardened) on Amazon Linux 2023 is a production-ready, security-hardened image of the PostgreSQL relational database, maintained and supported by Derek Coleman &amp; Associates Inc.</p><p>This is repackaged open-source software. PostgreSQL is developed by the PostgreSQL Global Development Group and distributed under the PostgreSQL License (a permissive OSI-approved license). This product bundles unmodified upstream PostgreSQL 16 on a hardened Amazon Linux 2023 base; the charges associated with this listing are for image hardening, continuous patching, vulnerability scanning, and business-day support - not for the underlying open-source software, which remains free.</p><p>Hardening baseline: minimal package footprint, SSH key-only access (password authentication disabled), IMDSv2 enforced, and no default database passwords (local peer/socket auth; remote access on port 5432 stays closed until you configure pg_hba.conf and open it to trusted CIDRs). Images are rebuilt, scanned for HIGH and CRITICAL vulnerabilities, and republished on a regular cadence. The data directory initializes on first boot under /var/lib/pgsql; manage the service with systemd and administer locally with: sudo -u postgres psql.</p>
 <h2>Pricing (hourly usage, AWS Marketplace)</h2>
 <table><tr><th>Instance type</th><th>Size</th><th>Software price</th></tr><tr><td>c7i.xlarge</td><td>4 vCPU / 8 GiB</td><td>$0.46/hr</td></tr><tr><td>c7i.2xlarge</td><td>8 vCPU / 16 GiB</td><td>$0.92/hr</td></tr><tr><td>c7i.4xlarge</td><td>16 vCPU / 32 GiB</td><td>$1.84/hr</td></tr></table>
 <p class="note">Recommended: c7i.2xlarge. AWS infrastructure charges are separate and billed by AWS.
 Charges stop when instances are terminated. No subscription, no minimum.</p>
 <h2>Getting started</h2>
-<pre>Launch from AWS Marketplace (1-Click or EC2 console). Connect via SSH with your EC2 key pair: ssh -i &lt;key&gt; ec2-user@&lt;public-ip&gt;. The data directory initializes on first boot; administer locally with: sudo -u postgres psql. Remote access (port 5432) and authentication are a deliberate customer configuration step - edit pg_hba.conf and postgresql.conf, then open 5432 to trusted CIDRs only. Root login is disabled; use sudo. There are no passwords anywhere in this product.</pre>
+<pre>1. Launch from AWS Marketplace (1-Click or EC2 console).
+2. Connect via SSH with your EC2 key pair: ssh -i &lt;key&gt; ec2-user@&lt;public-ip&gt;. Root login is disabled; use sudo.
+3. The data directory initializes on first boot (under /var/lib/pgsql); administer locally with: sudo -u postgres psql.
+4. Remote access (port 5432) and authentication are a deliberate customer configuration step - edit /var/lib/pgsql/data/postgresql.conf (listen_addresses) and /var/lib/pgsql/data/pg_hba.conf (add a scram-sha-256 line for your subnet), restart postgresql, then open 5432 to trusted CIDRs only. Server log: /var/lib/pgsql/data/log/.
+5. Verify: sudo -u postgres psql -c &#x27;SELECT 1;&#x27;.
+6. Sensitive data: there are no passwords or secrets anywhere in this product.
+7. Backup: snapshot the EBS volume (it contains all configuration and data).
+8. Resources: a single instance uses 1 EC2 instance and 1 gp3 EBS volume; no other AWS resources are created.
+9. Support: support@dcassociatesgroup.com.</pre>
 <h2>Support</h2>
 <p>Email <a href="mailto:support@dcassociatesgroup.com">support@dcassociatesgroup.com</a> — business-day response. Covers
 image operation, the hardening baseline, and launch issues. See <a href="/support/">support</a>.</p>
 
 </main>
 <footer><div class="wrap">
-<p>Derek Coleman & Associates Incorporated &middot; <a href="mailto:support@dcassociatesgroup.com">support@dcassociatesgroup.com</a></p>
+<p>Derek Coleman & Associates Inc &middot; <a href="mailto:support@dcassociatesgroup.com">support@dcassociatesgroup.com</a></p>
 <p>All product names, logos, and brands are property of their respective owners and are used for
 identification purposes only. Use does not imply endorsement. Each page notes the relevant
 open-source license; the underlying open-source software remains free.</p>

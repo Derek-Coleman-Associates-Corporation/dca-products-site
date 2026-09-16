@@ -4,10 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Traefik (Hardened) on Amazon Linux 2023 — DCA Hardened Images</title>
-<meta name="description" content="This product has charges associated with it for image hardening, maintenance, and support. Traefik reverse proxy on Amazon Linux 2023, security-hardened for production: minimal package set, SSH key-only access, IMDSv2-only, dashboard and API disabled, runs as a non-root user, and continuously patche">
+<meta name="description" content="Traefik reverse proxy on Amazon Linux 2023, security-hardened for production: minimal package set, SSH key-only access, IMDSv2-only, dashboard and API…">
 <link rel="canonical" href="https://products.dcassociatesgroup.com/traefik/">
 <meta property="og:title" content="Traefik (Hardened) on Amazon Linux 2023 — DCA Hardened Images">
-<meta property="og:description" content="This product has charges associated with it for image hardening, maintenance, and support. Traefik reverse proxy on Amazon Linux 2023, security-hardened for production: minimal package set, SSH key-only access, IMDSv2-only, dashboard and API disabled, runs as a non-root user, and continuously patche">
+<meta property="og:description" content="Traefik reverse proxy on Amazon Linux 2023, security-hardened for production: minimal package set, SSH key-only access, IMDSv2-only, dashboard and API…">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://products.dcassociatesgroup.com/traefik/">
 <style>
@@ -39,7 +39,7 @@ th{background:var(--card)}
 footer{border-top:1px solid var(--border);margin-top:48px;padding:22px 0;color:var(--muted);font-size:.85rem}
 pre{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:12px;overflow-x:auto;font-size:.85rem}
 </style>
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "Traefik (Hardened) on Amazon Linux 2023", "operatingSystem": "Amazon Linux 2023", "applicationCategory": "DeveloperApplication", "description": "This product has charges associated with it for image hardening, maintenance, and support. Traefik reverse proxy on Amazon Linux 2023, security-hardened for production: minimal package set, SSH key-only access, IMDSv2-only, dashboard and API disabled, runs as a non-root user, and continuously patched images.", "url": "https://products.dcassociatesgroup.com/traefik/", "provider": {"@type": "Organization", "name": "Derek Coleman & Associates Incorporated"}, "offers": {"@type": "AggregateOffer", "priceCurrency": "USD", "lowPrice": "0.46", "highPrice": "1.84", "description": "Hourly usage pricing on AWS Marketplace, billed per running instance hour."}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "Traefik (Hardened) on Amazon Linux 2023", "operatingSystem": "Amazon Linux 2023", "applicationCategory": "DeveloperApplication", "description": "Traefik reverse proxy on Amazon Linux 2023, security-hardened for production: minimal package set, SSH key-only access, IMDSv2-only, dashboard and API disabled, runs as a non-root user, and continuously patched images. This product has charges associated with it for image hardening, maintenance, and support.", "url": "https://products.dcassociatesgroup.com/traefik/", "provider": {"@type": "Organization", "name": "Derek Coleman & Associates Inc"}, "offers": {"@type": "AggregateOffer", "priceCurrency": "USD", "lowPrice": "0.46", "highPrice": "1.84", "description": "Hourly usage pricing on AWS Marketplace, billed per running instance hour."}}</script>
 </head>
 <body>
 <header class="site"><div class="wrap">
@@ -49,25 +49,32 @@ pre{background:var(--card);border:1px solid var(--border);border-radius:8px;padd
 <main class="wrap">
 
 <h1>Traefik (Hardened) on Amazon Linux 2023</h1>
-<p class="lede">This product has charges associated with it for image hardening, maintenance, and support. Traefik reverse proxy on Amazon Linux 2023, security-hardened for production: minimal package set, SSH key-only access, IMDSv2-only, dashboard and API disabled, runs as a non-root user, and continuously patched images.</p>
-<p><a class="btn" data-mp="traefik" href="https://aws.amazon.com/marketplace/search/results?searchTerms=Traefik%20%28Hardened%29%20on%20Amazon%20Linux%202023" rel="noopener">View on AWS Marketplace</a></p>
+<p class="lede">Traefik reverse proxy on Amazon Linux 2023, security-hardened for production: minimal package set, SSH key-only access, IMDSv2-only, dashboard and API disabled, runs as a non-root user, and continuously patched images. This product has charges associated with it for image hardening, maintenance, and support.</p>
+<p><a class="btn" data-mp="traefik" href="https://aws.amazon.com/marketplace/pp/prodview-rf3t2er5hyuic" rel="noopener">View on AWS Marketplace</a></p>
 <h2>Why this image</h2>
-<ul class="hl"><li>Security-hardened at build time: minimal packages, key-only SSH, IMDSv2-only, non-root service user, dashboard/API off by default.</li><li>Continuously patched: rebuilt, vulnerability-scanned, and republished on a regular cadence.</li><li>Production-ready: systemd-managed Traefik 3.7; drop dynamic config YAML into /etc/traefik/dynamic - changes apply live.</li></ul>
+<ul class="hl"><li>Production-ready: systemd-managed Traefik 3.7; drop dynamic config YAML into /etc/traefik/dynamic - changes apply live.</li><li>Security-hardened at build time: minimal packages, key-only SSH, IMDSv2-only, non-root service user, dashboard/API off by default.</li><li>Continuously patched: rebuilt, vulnerability-scanned, and republished on a regular cadence.</li></ul>
 <h2>About</h2>
-<p>Traefik (Hardened) on Amazon Linux 2023 is a production-ready, security-hardened image of the Traefik reverse proxy and load balancer, maintained and supported by Derek Coleman &amp; Associates Incorporated.</p><p>This is repackaged open-source software. Traefik is developed by Traefik Labs and the Traefik community and is distributed under the MIT License. Traefik is a trademark of Traefik Labs; this listing is not endorsed by or affiliated with Traefik Labs. This product bundles the unmodified upstream Traefik release binary on a hardened Amazon Linux 2023 base; the charges associated with this listing are for image hardening, continuous patching, vulnerability scanning, and business-day support - not for the underlying open-source software, which remains free.</p><p>Hardening baseline: minimal package footprint, SSH key-only access (password authentication disabled), IMDSv2 enforced, Traefik running as a dedicated non-root user with only the bind capability, the dashboard and API disabled by default, host firewall exposing only web ports, and no default credentials anywhere. Images are rebuilt, scanned for HIGH and CRITICAL vulnerabilities, and republished on a regular cadence so that new launches start current. Define routers and services as YAML files under /etc/traefik/dynamic (watched live) and manage the service with systemd.</p>
+<p>Traefik (Hardened) on Amazon Linux 2023 is a production-ready, security-hardened image of the Traefik reverse proxy and load balancer, maintained and supported by Derek Coleman &amp; Associates Inc.</p><p>This is repackaged open-source software. Traefik is developed by Traefik Labs and the Traefik community and is distributed under the MIT License. Traefik is a trademark of Traefik Labs; this listing is not endorsed by or affiliated with Traefik Labs. This product bundles the unmodified upstream Traefik release binary on a hardened Amazon Linux 2023 base; the charges associated with this listing are for image hardening, continuous patching, vulnerability scanning, and business-day support - not for the underlying open-source software, which remains free.</p><p>Hardening baseline: minimal package footprint, SSH key-only access (password authentication disabled), IMDSv2 enforced, Traefik running as a dedicated non-root user with only the bind capability, the dashboard and API disabled by default, host firewall exposing only web ports, and no default credentials anywhere. Images are rebuilt, scanned for HIGH and CRITICAL vulnerabilities, and republished on a regular cadence so that new launches start current. Define routers and services as YAML files under /etc/traefik/dynamic (watched live) and manage the service with systemd.</p>
 <h2>Pricing (hourly usage, AWS Marketplace)</h2>
 <table><tr><th>Instance type</th><th>Size</th><th>Software price</th></tr><tr><td>c7i.xlarge</td><td>4 vCPU / 8 GiB</td><td>$0.46/hr</td></tr><tr><td>c7i.2xlarge</td><td>8 vCPU / 16 GiB</td><td>$0.92/hr</td></tr><tr><td>c7i.4xlarge</td><td>16 vCPU / 32 GiB</td><td>$1.84/hr</td></tr></table>
 <p class="note">Recommended: c7i.xlarge. AWS infrastructure charges are separate and billed by AWS.
 Charges stop when instances are terminated. No subscription, no minimum.</p>
 <h2>Getting started</h2>
-<pre>Launch from AWS Marketplace (1-Click or EC2 console). Connect via SSH: ssh -i &lt;key&gt; ec2-user@&lt;public-ip&gt;. Static config lives at /etc/traefik/traefik.yml (entrypoints :80/:443); add routers and services as YAML files under /etc/traefik/dynamic - the directory is watched, so changes apply without restart. The dashboard and API are disabled by design. Root login is disabled; use sudo. There are no passwords anywhere in this product.</pre>
+<pre>1. Launch from AWS Marketplace (1-Click or EC2 console).
+2. Connect via SSH with your EC2 key pair: ssh -i &lt;key&gt; ec2-user@&lt;public-ip&gt;. Root login is disabled; use sudo.
+3. Static config lives at /etc/traefik/traefik.yml (entrypoints :80/:443); add routers and services as YAML files under /etc/traefik/dynamic - the directory is watched, so changes apply without restart. The dashboard and API are disabled by design.
+4. Verify: sudo systemctl status traefik.
+5. Sensitive data: there are no passwords or secrets anywhere in this product. Logs under /var/log may contain client IPs - treat as personal data.
+6. Backup: snapshot the EBS volume (it contains all configuration and data).
+7. Resources: a single instance uses 1 EC2 instance and 1 gp3 EBS volume; no other AWS resources are created.
+8. Support: support@dcassociatesgroup.com.</pre>
 <h2>Support</h2>
 <p>Email <a href="mailto:support@dcassociatesgroup.com">support@dcassociatesgroup.com</a> — business-day response. Covers
 image operation, the hardening baseline, and launch issues. See <a href="/support/">support</a>.</p>
 
 </main>
 <footer><div class="wrap">
-<p>Derek Coleman & Associates Incorporated &middot; <a href="mailto:support@dcassociatesgroup.com">support@dcassociatesgroup.com</a></p>
+<p>Derek Coleman & Associates Inc &middot; <a href="mailto:support@dcassociatesgroup.com">support@dcassociatesgroup.com</a></p>
 <p>All product names, logos, and brands are property of their respective owners and are used for
 identification purposes only. Use does not imply endorsement. Each page notes the relevant
 open-source license; the underlying open-source software remains free.</p>
